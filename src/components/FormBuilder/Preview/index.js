@@ -10,7 +10,7 @@ import {
 } from "../../../actions/formBuilderActions";
 import FormInputs from "./SortableFormInputs";
 import FinalFormPreview from "./FinalFormPreview";
-import { Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 // DropTarget parameters
 const type = () => "items";
@@ -54,26 +54,30 @@ class Preview extends Component {
             hideFinalPreview={this.hideFinalPreview}
           />
         )}
-        <div style={{ height: "100%" }}>
-          <div style={{ height: "50px" }}>
-            <h3 className="float-left">Edit Layout</h3>
+        <Box >
+          <Box  sx={{display: 'flex', justifyContent: 'space-between'}}> 
+            <Typography align="left" variant="h5">
+              Edit Layout
+            </Typography>
 
-            <Button
-              className="btn btn-primary float-right ml-3"
-              onClick={() => this.setState({ showFinalPreview: true })}
-              disabled={isEmpty(previewItems)}
-              variant="contained"
-            >
-              Preview{" "}
-            </Button>
-            <Button
-              className="btn btn-dark float-right ml-3"
-              onClick={() => onSubmit(JSON.stringify(previewItems))}
-              disabled={isEmpty(previewItems)}
-            >
-              Export
-            </Button>
-          </div>
+            <Box>
+              {/* <Button
+                className="btn btn-primary float-right ml-3"
+                onClick={() => this.setState({ showFinalPreview: true })}
+                disabled={isEmpty(previewItems)}
+                variant="contained"
+              >
+                Preview{" "}
+              </Button>
+              <Button
+                className="btn btn-dark float-right ml-3"
+                onClick={() => onSubmit(JSON.stringify(previewItems))}
+                disabled={isEmpty(previewItems)}
+              >
+                Export
+              </Button> */}
+            </Box>
+          </Box>
           <div
             style={{
               minHeight: "80vh",
@@ -81,6 +85,7 @@ class Preview extends Component {
               flexWrap: "wrap",
               flexDirection: "row",
               alignContent: "flex-start",
+              justifyContent: "space-between",
             }}
           >
             {isEmpty(previewItems) && (
@@ -102,7 +107,7 @@ class Preview extends Component {
                 />
               ))}
           </div>
-        </div>
+        </Box>
       </div>
     );
   }

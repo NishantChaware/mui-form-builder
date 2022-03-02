@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Chip } from "@mui/material";
 import React, { Component } from "react";
 
 class HeaderBar extends Component {
@@ -7,22 +7,36 @@ class HeaderBar extends Component {
     const opacity = isHovering ? 1 : 0;
 
     return (
-      <div style={{ opacity: opacity, display: "block" }}>
-        <Box className="badge badge-secondary" sx={{ mb: 1 }}>
-          {item.element}
+      <Box
+        sx={{
+          opacity: opacity,
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <Chip label={<b>{item.element}</b>} size="small" sx={{mb: 1}} />
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            mb: 0.5
+          }}
+        >
+          <div onClick={() => removeItem(id)} style={{marginLeft : '1rem'}} >
+            <i className="fa fa-trash-o" />
+          </div>
+          {item.element !== "LineBreak" && (
+            <div
+            style={{marginLeft : '1rem'}}
+              onClick={() => showEditor(item)}
+            >
+              <i className="fa fa-edit mr-3" />
+            </div>
+          )}
         </Box>
-        <span onClick={() => removeItem(id)} className="float-right onHover">
-          <i className="fa fa-trash-o" />
-        </span>
-        {item.element !== "LineBreak" && (
-          <span
-            onClick={() => showEditor(item)}
-            className="float-right onHover"
-          >
-            <i className="fa fa-edit mr-3" />
-          </span>
-        )}
-      </div>
+      </Box>
     );
   }
 }

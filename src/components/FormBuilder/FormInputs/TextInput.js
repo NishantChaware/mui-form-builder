@@ -29,6 +29,8 @@ const TextInput = (props) => {
       }
     : {};
 
+    console.log(item)
+
   return (
     <TextField
       {..._props}
@@ -36,7 +38,7 @@ const TextInput = (props) => {
       // className={className}
       fullWidth
       // label={generator ? label : item.label}
-      label={item.label.blocks[0].text}
+      label={item.label}
       required={generator ? required : item.required}
     />
     // <div>

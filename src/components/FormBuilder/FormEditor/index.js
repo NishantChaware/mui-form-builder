@@ -6,31 +6,29 @@ import { convertFromRaw, EditorState, convertToRaw } from "draft-js";
 import { map, filter } from "lodash";
 import {
   hideEditor,
-  submitEditorState
+  submitEditorState,
 } from "../../../actions/formBuilderActions";
-import DatePicker from 'react-date-picker';
+import DatePicker from "react-date-picker";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  InputLabel,
+  TextField,
+  Typography,
+} from "@mui/material";
+import OutlinedInput from "@mui/material/OutlinedInput";
 
 // toolbar options for the WYSIWYG Editor
 const toolbar = {
-  options: [
-    "inline",
-    "list",
-    "textAlign",
-    "fontSize",
-    "link",
-    "history"
-  ],
+  options: ["inline", "list", "textAlign", "fontSize", "link", "history"],
   inline: {
     inDropdown: false,
-    options: [
-      "bold",
-      "italic",
-      "underline",
-      "superscript",
-      "subscript"
-    ]
-  }
+    options: ["bold", "italic", "underline", "superscript", "subscript"],
+  },
 };
 
 class FormEditor extends Component {
@@ -39,55 +37,53 @@ class FormEditor extends Component {
     this.state = {
       editorState: {
         ...props.editorState,
-        label: EditorState.createWithContent(
-          convertFromRaw(props.editorState.label)
-        )
-      }
+        label: props.editorState.label,
+      },
     };
   }
 
-  toggleField = field => {
-    this.setState(prevState => ({
+  toggleField = (field) => {
+    this.setState((prevState) => ({
       editorState: {
         ...this.state.editorState,
-        [field]: !prevState.editorState[field]
-      }
+        [field]: !prevState.editorState[field],
+      },
     }));
   };
 
   addOption = (element) => {
     let option;
-    switch(element) {
-      case 'Tags': {
+    switch (element) {
+      case "Tags": {
         option = {
           id: uuid(),
           label: "",
-          value: ""
+          value: "",
         };
         break;
       }
-      case 'Checkboxes': {
+      case "Checkboxes": {
         option = {
           id: uuid(),
           value: "",
-          checked: false
-        }
+          checked: false,
+        };
         break;
       }
-      case 'RadioButtons': {
+      case "RadioButtons": {
         option = {
           id: uuid(),
           label: "",
           value: "",
-          checked: false
-        }
+          checked: false,
+        };
         break;
       }
       default: {
         option = {
           id: uuid(),
-          value: ""
-        }
+          value: "",
+        };
         break;
       }
     }
@@ -97,32 +93,29 @@ class FormEditor extends Component {
     this.setState({
       editorState: {
         ...this.state.editorState,
-        options: updatedOptions
-      }
+        options: updatedOptions,
+      },
     });
   };
 
-  removeOption = optionId => {
+  removeOption = (optionId) => {
     const { options } = this.state.editorState;
     let updatedOptions = [...options];
     if (options.length > 1) {
-      updatedOptions = filter(
-        options,
-        option => option.id !== optionId
-      );
+      updatedOptions = filter(options, (option) => option.id !== optionId);
     }
 
     this.setState({
       editorState: {
         ...this.state.editorState,
-        options: updatedOptions
-      }
+        options: updatedOptions,
+      },
     });
   };
 
   handleChange = (value, optionId, field) => {
     const { options } = this.state.editorState;
-    const updatedOptions = map(options, option => {
+    const updatedOptions = map(options, (option) => {
       if (option.id === optionId) {
         option[field] = value;
         return option;
@@ -133,8 +126,8 @@ class FormEditor extends Component {
     this.setState({
       editorState: {
         ...this.state.editorState,
-        options: updatedOptions
-      }
+        options: updatedOptions,
+      },
     });
   };
 
@@ -142,17 +135,17 @@ class FormEditor extends Component {
     this.setState({
       editorState: {
         ...this.state.editorState,
-        [name]: value
-      }
+        [name]: value,
+      },
     });
   };
 
   // convert draftjs editorState to JS object before saving it in redux store
-  handleSubmit = label => {
-    const content = label.getCurrentContent();
+  handleSubmit = (label) => {
+    // const content = label.getCurrentContent();
     this.props.submitEditorState({
       ...this.state.editorState,
-      label: convertToRaw(content)
+      label: label,
     });
   };
 
@@ -173,28 +166,27 @@ class FormEditor extends Component {
         minDate,
         height,
         width,
-        value
-      }
+        value,
+      },
     } = this.state;
 
     return (
       <div className="form_editor">
-        <div
-          className="jumbotron bg-default mx-auto mt-3"
-          style={{ border: "1px solid #aaa", maxWidth: "800px" }}
-        >
-          <span
-            className="float-right"
+        <Box sx={{ maxWidth: "800px" }}>
+          <Box
             style={{ cursor: "pointer" }}
+            sx={{ float: "right" }}
             onClick={() => hideEditor()}
           >
             <i className="fa fa-times" />
-          </span>
-          <h2 className="mb-4">{element} Editor</h2>
+          </Box>
+
+          <Typography sx={{ fontWeight: "600" }} variant="h6">
+            {element} Editor
+          </Typography>
 
           {/* ------------- LABEL ------------- */}
-          <h5>Label:</h5>
-          <Editor
+          {/* <Editor
             toolbar={toolbar}
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
@@ -202,22 +194,43 @@ class FormEditor extends Component {
             onEditorStateChange={editorState =>
               this.handleOptions("label", editorState)
             }
-          />
+          /> */}
+
+          <Box sx={{ display: "flex", mt: 2, flexDirection: 'column' }}>
+            <InputLabel htmlFor="field-label">
+              Field Label
+            </InputLabel>
+
+            <TextField
+              required
+              fullWidth
+              id="field-label"
+              size="small"
+              placeholder="Please enter label"
+              value={label}
+              onChange={(e) => {
+                this.handleOptions("label", e.target.value);
+              }}
+              sx={{  }}
+            />
+          </Box>
 
           <div className="mt-5">
             {/* ------------- REQUIRED ------------- */}
             {editorState.hasOwnProperty("required") && (
-              <div className="form-check">
-                <input
-                  type="checkbox"
-                  id="required"
-                  checked={required}
-                  onChange={() => this.toggleField("required")}
-                />
-                <label htmlFor="required" className="form-label ml-2">
-                  Required
-                </label>
-              </div>
+              <Box className="form-check" sx={{ mt: 2 }}>
+                <FormGroup>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={required}
+                        onChange={() => this.toggleField("required")}
+                      />
+                    }
+                    label="Required"
+                  />
+                </FormGroup>
+              </Box>
             )}
           </div>
 
@@ -231,7 +244,7 @@ class FormEditor extends Component {
                     className="form-control"
                     placeholder="Option"
                     value={value}
-                    onChange={e =>
+                    onChange={(e) =>
                       this.handleChange(e.target.value, id, "value")
                     }
                   />
@@ -241,10 +254,8 @@ class FormEditor extends Component {
                       disabled={options.length === 1}
                       style={{
                         cursor: `${
-                          options.length === 1
-                            ? "not-allowed"
-                            : "pointer"
-                        }`
+                          options.length === 1 ? "not-allowed" : "pointer"
+                        }`,
                       }}
                       onClick={() => {
                         this.removeOption(id);
@@ -255,10 +266,7 @@ class FormEditor extends Component {
                   </div>
                 </div>
               ))}
-              <button
-                className="btn btn-primary"
-                onClick={this.addOption}
-              >
+              <button className="btn btn-primary" onClick={this.addOption}>
                 Add Option
               </button>
             </div>
@@ -274,7 +282,7 @@ class FormEditor extends Component {
                     className="form-control"
                     value={label}
                     placeholder="Label"
-                    onChange={e =>
+                    onChange={(e) =>
                       this.handleChange(e.target.value, id, "label")
                     }
                   />
@@ -282,7 +290,7 @@ class FormEditor extends Component {
                     className="form-control"
                     value={value}
                     placeholder="Value"
-                    onChange={e =>
+                    onChange={(e) =>
                       this.handleChange(e.target.value, id, "value")
                     }
                   />
@@ -292,10 +300,8 @@ class FormEditor extends Component {
                       disabled={options.length === 1}
                       style={{
                         cursor: `${
-                          options.length === 1
-                            ? "not-allowed"
-                            : "pointer"
-                        }`
+                          options.length === 1 ? "not-allowed" : "pointer"
+                        }`,
                       }}
                       onClick={() => {
                         this.removeOption(id);
@@ -326,7 +332,7 @@ class FormEditor extends Component {
                     placeholder="Option"
                     value={value}
                     name={editorState.id}
-                    onChange={e =>
+                    onChange={(e) =>
                       this.handleChange(e.target.value, id, "value")
                     }
                   />
@@ -336,10 +342,8 @@ class FormEditor extends Component {
                       disabled={options.length === 1}
                       style={{
                         cursor: `${
-                          options.length === 1
-                            ? "not-allowed"
-                            : "pointer"
-                        }`
+                          options.length === 1 ? "not-allowed" : "pointer"
+                        }`,
                       }}
                       onClick={() => {
                         this.removeOption(id);
@@ -369,7 +373,7 @@ class FormEditor extends Component {
                     className="form-control"
                     value={label}
                     placeholder="Label"
-                    onChange={e =>
+                    onChange={(e) =>
                       this.handleChange(e.target.value, id, "label")
                     }
                   />
@@ -377,7 +381,7 @@ class FormEditor extends Component {
                     className="form-control"
                     value={value}
                     placeholder="Value"
-                    onChange={e =>
+                    onChange={(e) =>
                       this.handleChange(e.target.value, id, "value")
                     }
                   />
@@ -387,10 +391,8 @@ class FormEditor extends Component {
                       disabled={options.length === 1}
                       style={{
                         cursor: `${
-                          options.length === 1
-                            ? "not-allowed"
-                            : "pointer"
-                        }`
+                          options.length === 1 ? "not-allowed" : "pointer"
+                        }`,
                       }}
                       onClick={() => {
                         this.removeOption(id);
@@ -419,10 +421,7 @@ class FormEditor extends Component {
                 type="number"
                 value={numberOfStars || ""} // default to empty string to avoid error
                 onChange={({ target: { value } }) =>
-                  this.handleOptions(
-                    "numberOfStars",
-                    parseFloat(value)
-                  )
+                  this.handleOptions("numberOfStars", parseFloat(value))
                 }
                 min={0}
               />
@@ -480,73 +479,73 @@ class FormEditor extends Component {
               </div>
             </div>
           )}
-          
+
           {/* ------------- DATE PICKER ------------- */}
           {element === "Date" && (
-            <div className="mt-5" style={{ display: 'flex'}}>
+            <div className="mt-5" style={{ display: "flex" }}>
               <div className="mr-5">
                 <h5>Min Date:</h5>
-                <DatePicker 
+                <DatePicker
                   value={minDate || new Date()}
-                  onChange={value => this.handleOptions('minDate', value)}
+                  onChange={(value) => this.handleOptions("minDate", value)}
                 />
               </div>
               <div>
                 <h5>Max Date:</h5>
-                <DatePicker 
+                <DatePicker
                   value={maxDate || new Date()}
-                  onChange={value => this.handleOptions('maxDate', value)}
+                  onChange={(value) => this.handleOptions("maxDate", value)}
                 />
               </div>
             </div>
           )}
-          
+
           {/* ------------- SIGNATURE ------------- */}
           {element === "Signature" && (
-            <div className="mt-5" style={{ display: 'flex'}}>
+            <div className="mt-5" style={{ display: "flex" }}>
               <div>
                 <h5>Height:</h5>
                 <input
-                  className="form-control" 
-                  type="number" 
-                  value={height} 
-                  onChange={e => this.handleOptions('height', e.target.value)} 
+                  className="form-control"
+                  type="number"
+                  value={height}
+                  onChange={(e) => this.handleOptions("height", e.target.value)}
                 />
               </div>
               <div className="ml-5">
                 <h5>Width:</h5>
-                <input 
+                <input
                   className="form-control"
-                  type="number" 
-                  value={width} 
-                  onChange={e => this.handleOptions('width', e.target.value)} 
+                  type="number"
+                  value={width}
+                  onChange={(e) => this.handleOptions("width", e.target.value)}
                 />
               </div>
             </div>
           )}
 
           {/* ------------- SUBMIT AND CANCEL BUTTONS ------------- */}
-          <button className="btn btn-muted mt-5" onClick={hideEditor}>
-            Cancel
-          </button>
-          <button
-            className="btn btn-secondary mt-5"
-            onClick={() => this.handleSubmit(label)}
-          >
-            Done
-          </button>
-        </div>
+          <Box sx={{ mt: 3, float: "right" }}>
+            <Button onClick={hideEditor}>Cancel</Button>
+            <Button
+              variant="contained"
+              onClick={() => this.handleSubmit(label)}
+            >
+              Done
+            </Button>
+          </Box>
+        </Box>
       </div>
     );
   }
 }
 
 export default connect(
-  state => ({
-    editorState: state.formBuilder.editorState
+  (state) => ({
+    editorState: state.formBuilder.editorState,
   }),
   {
     hideEditor,
-    submitEditorState
+    submitEditorState,
   }
 )(FormEditor);

@@ -8,21 +8,27 @@ import FormEditor from "./FormEditor";
 import Toolbar from "./Toolbar";
 import Preview from "./Preview";
 import defaultItems from "./Toolbar/defaultItems";
+import { Dialog, Grid } from "@mui/material";
+import { hideEditor } from "../../actions/formBuilderActions";
 
 const Builder = ({ editorVisible, onSubmit, items }) => {
   return (
     <React.Fragment>
-      {editorVisible && <FormEditor />}
-      <div className="container">
-        <div className="row mt-3">
-          <div className="col-md-4">
-            <Toolbar items={items} />
-          </div>
-          <div className="col-md-8" >
-            <Preview onSubmit={onSubmit} />
-          </div>
-        </div>
-      </div>
+      <Dialog
+        open={editorVisible}
+        onClose={hideEditor}
+        sx={{ position: "absolute",  top: "-60% "}}
+      >
+        <FormEditor />
+      </Dialog>
+      <Grid container sx={{ p: 3 }}>
+        <Grid item md={3} xs={12}>
+          <Toolbar items={items} />
+        </Grid>
+        <Grid item md={8} xs={12}>
+          <Preview onSubmit={onSubmit} />
+        </Grid>
+      </Grid>
     </React.Fragment>
   );
 };

@@ -5,15 +5,16 @@ import { ContentState, EditorState, convertToRaw } from "draft-js";
 // convert html to draftjs-editorState and then return raw JS
 // editorState is stored as raw JS object in the Redux store
 const convertHtmlToRawJs = (html) => {
-  const contentBlock = htmlToDraft(html);
-  const contentState = ContentState.createFromBlockArray(
-    contentBlock.contentBlocks
-  );
-  const editorState = EditorState.createWithContent(contentState);
-  return convertToRaw(editorState.getCurrentContent());
+  // const contentBlock = htmlToDraft(html);
+  // const contentState = ContentState.createFromBlockArray(
+  //   contentBlock.contentBlocks
+  // );
+  // const editorState = EditorState.createWithContent(contentState);
+  // return convertToRaw(editorState.getCurrentContent());
+  return html;
 };
 
-const html = "<div>Placeholder Label</div>";
+const html = "Placeholder Label";
 
 export default (item) => {
   switch (item) {
@@ -21,12 +22,12 @@ export default (item) => {
     case "Paragraph":
     case "Label":
       return {
-        label: convertHtmlToRawJs(html),
+        label: html,
       };
 
     case "Checkboxes":
       return {
-        label: convertHtmlToRawJs(html),
+        label: html,
         required: false,
         options: [
           {
@@ -44,7 +45,7 @@ export default (item) => {
 
     case "Dropdown":
       return {
-        label: convertHtmlToRawJs(html),
+        label: html,
         required: false,
         options: [
           {
@@ -60,7 +61,7 @@ export default (item) => {
 
     case "HyperLink":
       return {
-        label: convertHtmlToRawJs(html),
+        label: html,
         required: false,
         value: "",
       };
@@ -71,14 +72,14 @@ export default (item) => {
     case "NumberInput":
       return {
         required: false,
-        label: convertHtmlToRawJs(html),
+        label: html,
         value: 0,
       };
 
     case "RadioButtons":
       return {
         required: false,
-        label: convertHtmlToRawJs(html),
+        label: html,
         options: [
           {
             id: uuid(),
@@ -97,7 +98,7 @@ export default (item) => {
     case "Tags":
       return {
         required: false,
-        label: convertHtmlToRawJs(html),
+        label: html,
         options: [
           {
             id: uuid(),
@@ -115,7 +116,7 @@ export default (item) => {
     case "Range":
       return {
         required: false,
-        label: convertHtmlToRawJs(html),
+        label: html,
         value: 0,
         min: 0,
         max: 5,
@@ -125,7 +126,7 @@ export default (item) => {
     case "Rating":
       return {
         required: false,
-        label: convertHtmlToRawJs(html),
+        label: html,
         value: 0,
         numberOfStars: 5,
       };
@@ -135,13 +136,13 @@ export default (item) => {
     case "Email":
       return {
         required: false,
-        label: convertHtmlToRawJs(html),
+        label: html,
         value: "",
       };
     case "Date":
       return {
         required: false,
-        label: convertHtmlToRawJs(html),
+        label: html,
         value: new Date(),
         maxDate: null,
         minDate: null,
@@ -149,7 +150,7 @@ export default (item) => {
     case "Signature":
       return {
         required: false,
-        label: convertHtmlToRawJs(html),
+        label: html,
         value: "",
         height: 300,
         width: 300,

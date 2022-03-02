@@ -28,10 +28,10 @@ class TextArea extends Component {
 
     return (
       <React.Fragment>
-        <HeaderLabel 
+        {/* <HeaderLabel 
           label={generator ? label : item.label} 
           required={generator ? required : item.required} 
-        />
+        /> */}
         <textarea 
           {..._props}
           className={className} 

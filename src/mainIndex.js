@@ -6,7 +6,7 @@ import store from "./store";
 
 import "react-rangeslider/lib/index.css";
 import './css/font-awesome.min.css';
-import "./css/bootstrap.min.css";
+// import "./css/bootstrap.min.css";
 // import "./src/App.scss";
 
 const FormBuilder = ({ onSubmit, items }) => (

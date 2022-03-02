@@ -5,7 +5,7 @@ import { DragSource, DropTarget } from "react-dnd";
 import isEqual from "lodash/isEqual";
 import HeaderBar from "../FormInputs/HeaderBar";
 import switchItems from "../FormInputs/switchItems";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 const cardSource = {
   beginDrag(props) {
@@ -81,37 +81,32 @@ class FormInputs extends Component {
       connectDropTarget,
     } = this.props;
 
-    const opacity = isDragging ? 0 : 1;
+    const display = isDragging ? "none" : "block";
 
     return (
       connectDragSource &&
-      connectDropTarget && (
-        <Grid
-          item
-          sx={{ mt: -1, p: 1 }}
-          md={6}
-          xs={12}
-          ref={(instance) => {
-            connectDragSource(findDOMNode(instance));
-            connectDropTarget(findDOMNode(instance));
-          }}
-        >
-          <div
-            className=" "
-            style={{ opacity }}
-            onMouseOver={() => this.setState({ isHovering: true })}
-            onMouseLeave={() => this.setState({ isHovering: false })}
-          >
-            <HeaderBar
-              item={item}
-              id={id}
-              removeItem={removeItem}
-              showEditor={showEditor}
-              isHovering={this.state.isHovering}
-            />
-            {switchItems(item)}
+      connectDropTarget &&
+      connectDragSource(
+        connectDropTarget(
+          <div className="input-wrapper">
+            {isDragging && <div className="whiledragging-dropzone"> </div>}
+            <div
+              className=""
+              style={{ display }}
+              onMouseOver={() => this.setState({ isHovering: true })}
+              onMouseLeave={() => this.setState({ isHovering: false })}
+            >
+              <HeaderBar
+                item={item}
+                id={id}
+                removeItem={removeItem}
+                showEditor={showEditor}
+                isHovering={this.state.isHovering}
+              />
+              {switchItems(item)}
+            </div>
           </div>
-        </Grid>
+        )
       )
     );
   }
