@@ -132,6 +132,21 @@ export default (item) => {
       };
 
     case "TextInput":
+    case "MultiselectDropdown":
+      return {
+        label: html,
+        required: false,
+        options: [
+          {
+            id: uuid(),
+            value: "Option1",
+          },
+          {
+            id: uuid(),
+            value: "Option2",
+          },
+        ],
+      };
     case "TextArea":
     case "Email":
       return {
@@ -146,6 +161,13 @@ export default (item) => {
         value: new Date(),
         maxDate: null,
         minDate: null,
+      };
+    case "DateTime":
+      return {
+        required: false,
+        label: html,
+        value: new Date(),
+       
       };
     case "Signature":
       return {

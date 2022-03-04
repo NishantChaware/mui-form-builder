@@ -86,6 +86,8 @@ class Preview extends Component {
               flexDirection: "row",
               alignContent: "flex-start",
               justifyContent: "space-between",
+              border: "1px dashed black",
+              padding: "0 1rem",
             }}
           >
             {isEmpty(previewItems) && (

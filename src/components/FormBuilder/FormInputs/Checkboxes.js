@@ -1,93 +1,108 @@
-import React, { Component } from 'react';
-import HeaderLabel from './HeaderLabel';
-import map from 'lodash/map';
+import React, { Component, useState } from "react";
+import HeaderLabel from "./HeaderLabel";
+import map from "lodash/map";
+import {
+  Box,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormLabel,
+} from "@mui/material";
 
-class Checkboxes extends Component {
+const Checkboxes = (props) => {
+  let initialValues = {};
+  props.item.options.map(({ id, checked }) => (initialValues[id] = checked));
+  const [state, setState] = useState(initialValues);
 
-  handleChange = (checked, input, id) => {
-    let newValue = [...input.value];
-    checked 
-      ? newValue = [...newValue, id] 
-      : newValue = newValue.filter(i => i !== id); 
-    return input.onChange(newValue)
-  }
+  const handleChange = (event) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  };
 
-  render() {
-    const {
-      type,
-      meta,
-      item,
-      label,
-      input,
-      disabled,
-      required,
-      readOnly,
-      generator,
-      showError,
-      className,
-      defaultValue,
-    } = this.props;
+  const {
+    type,
+    meta,
+    item,
+    label,
+    input,
+    disabled,
+    required,
+    readOnly,
+    generator,
+    showError,
+    className,
+    defaultValue,
+  } = props;
 
-    const _props = generator ? {
-      type,
-      disabled: readOnly,
-    } : {
-      disabled
-    }
-    
-    const isChecked = (id) => {
-      return generator 
-        ? defaultValue.some(i => i === id) 
-          || (Array.isArray(input.value) 
-          && input.value.some(i => i === id))
-        : null
-    }
+  const _props = generator
+    ? {
+        type,
+        disabled: readOnly,
+      }
+    : {
+        disabled,
+      };
 
-    const change = (checked, id) => {
-      return generator 
-        ? this.handleChange(checked, input, id) 
-        : () => {}
-    }
+  const isChecked = (id) => {
+    return generator
+      ? defaultValue.some((i) => i === id) ||
+          (Array.isArray(input.value) && input.value.some((i) => i === id))
+      : null;
+  };
 
-    const options = generator ? this.props.options : this.props.item.options; 
+  const change = (checked, id) => {
+    return generator ? handleChange(checked, input, id) : () => {};
+  };
 
-    return (
-      <React.Fragment>
-        <HeaderLabel 
-          label={generator ? label : item.label} 
-          required={generator ? required : item.required}
-          readOnly={readOnly} 
-        />
-        <div className="form-group">
+  const options = generator ? props.options : props.item.options;
+  return (
+    <React.Fragment>
+      {/* <HeaderLabel 
+      label={generator ? label : item.label} 
+      required={generator ? required : item.required}
+      readOnly={readOnly} 
+    /> */}
+
+      <FormControl component="fieldset" variant="standard">
+        <FormLabel component="legend">{item.label}</FormLabel>
+
+        <FormGroup>
           {map(options, ({ id, value }) => (
-            <div key={id} className="d-block">
-              <input 
-                {..._props}
-                type="checkbox"
-                id={value}
-                name={value}
-                value={value}
-                readOnly={generator ? false : true}
-                className={className}
-                checked={isChecked(id)}
-                onChange={e => change(e.target.checked, id)}
+            <Box key={id}>
+              {" "}
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    {..._props}
+                    id={value}
+                    name={id}
+                    value={value}
+                    readOnly={generator ? false : true}
+                    checked={state[id] ? state[id] : false}
+                    onChange={(e) => {
+                      handleChange(e);
+                    }}
+                  />
+                }
+                label={value}
               />
-              <label className="form-label ml-2" htmlFor={value}>
-                {value}
-              </label>
-            </div>
+            </Box>
           ))}
-        </div>
-        {generator ? showError(meta.touched, meta.error, meta.warning) : ''}
-      </React.Fragment>
-    );
-  }
-}
+        </FormGroup>
+      </FormControl>
+
+      {generator ? showError(meta.touched, meta.error, meta.warning) : ""}
+    </React.Fragment>
+  );
+};
 
 Checkboxes.defaultProps = {
   disabled: false,
   generator: false,
-  className: 'mr-2'
-}
+  className: "mr-2",
+};
 
 export default Checkboxes;

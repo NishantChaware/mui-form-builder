@@ -29,7 +29,6 @@ const TextInput = (props) => {
       }
     : {};
 
-    console.log(item)
 
   return (
     <TextField
@@ -41,19 +40,6 @@ const TextInput = (props) => {
       label={item.label}
       required={generator ? required : item.required}
     />
-    // <div>
-    //   <HeaderLabel
-    //     label={generator ? label : item.label}
-    //     required={generator ? required : item.required}
-    //     readOnly={readOnly}
-    //   />
-    //   <input
-    //     {..._props}
-    //     type={type}
-    //     className={className}
-    //   />
-    //   {generator ? showError(meta.touched, meta.error, meta.warning) : ''}
-    // </div>  )
   );
 };
 

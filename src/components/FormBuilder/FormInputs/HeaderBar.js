@@ -10,26 +10,31 @@ class HeaderBar extends Component {
       <Box
         sx={{
           opacity: opacity,
-          display: "flex",
-          justifyContent: "space-between",
+          // display: "flex",
+          // justifyContent: "space-between",
         }}
       >
-        <Chip label={<b>{item.element}</b>} size="small" sx={{mb: 1}} />
+        {/* <Chip
+          label={item.element}
+          size="small"
+          sx={{ mb: 1, float: "left", fontWeight: "600" }}
+        /> */}
 
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            mb: 0.5
+            mb: 0.5,
+            float: "right",
           }}
         >
-          <div onClick={() => removeItem(id)} style={{marginLeft : '1rem'}} >
+          <div onClick={() => removeItem(id)} style={{ marginLeft: "1rem" }}>
             <i className="fa fa-trash-o" />
           </div>
           {item.element !== "LineBreak" && (
             <div
-            style={{marginLeft : '1rem'}}
+              style={{ marginLeft: "1rem" }}
               onClick={() => showEditor(item)}
             >
               <i className="fa fa-edit mr-3" />

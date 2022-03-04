@@ -17,7 +17,6 @@ const Builder = ({ editorVisible, onSubmit, items }) => {
       <Dialog
         open={editorVisible}
         onClose={hideEditor}
-        sx={{ position: "absolute",  top: "-60% "}}
       >
         <FormEditor />
       </Dialog>

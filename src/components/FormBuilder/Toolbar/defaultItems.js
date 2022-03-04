@@ -25,6 +25,11 @@ export default () => [
     icon: "fa fa-caret-square-o-down"
   },
   {
+    key: "MultiselectDropdown",
+    name: "MultiselectDropdown",
+    icon: "fa fa-caret-square-o-down"
+  },
+  {
     key: "Tags",
     name: "Tags",
     icon: "fa fa-tags"
@@ -77,6 +82,11 @@ export default () => [
   {
     key: "Date",
     name: "Date",
+    icon: "fa fa-calendar"
+  },
+  {
+    key: "DateTime",
+    name: "DateTime",
     icon: "fa fa-calendar"
   },
   {

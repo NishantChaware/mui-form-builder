@@ -8,7 +8,7 @@ import {
   hideEditor,
   submitEditorState,
 } from "../../../actions/formBuilderActions";
-import DatePicker from "react-date-picker";
+import DatePicker from '@mui/lab/DatePicker';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import {
   Box,
@@ -21,7 +21,7 @@ import {
   Typography,
 } from "@mui/material";
 import OutlinedInput from "@mui/material/OutlinedInput";
-
+import CancelIcon from "@mui/icons-material/Cancel";
 // toolbar options for the WYSIWYG Editor
 const toolbar = {
   options: ["inline", "list", "textAlign", "fontSize", "link", "history"],
@@ -185,21 +185,8 @@ class FormEditor extends Component {
             {element} Editor
           </Typography>
 
-          {/* ------------- LABEL ------------- */}
-          {/* <Editor
-            toolbar={toolbar}
-            wrapperClassName="demo-wrapper"
-            editorClassName="demo-editor"
-            editorState={label}
-            onEditorStateChange={editorState =>
-              this.handleOptions("label", editorState)
-            }
-          /> */}
-
-          <Box sx={{ display: "flex", mt: 2, flexDirection: 'column' }}>
-            <InputLabel htmlFor="field-label">
-              Field Label
-            </InputLabel>
+          <Box sx={{ display: "flex", mt: 2, flexDirection: "column" }}>
+            <InputLabel htmlFor="field-label">Field Label</InputLabel>
 
             <TextField
               required
@@ -211,7 +198,7 @@ class FormEditor extends Component {
               onChange={(e) => {
                 this.handleOptions("label", e.target.value);
               }}
-              sx={{  }}
+              sx={{}}
             />
           </Box>
 
@@ -237,11 +224,24 @@ class FormEditor extends Component {
           {/* ------------- DROPDOWN OPTIONS ------------- */}
           {element === "Dropdown" && (
             <div className="mt-5">
-              <h5>Options:</h5>
+              <Box
+                sx={{ display: "flex", justifyContent: "space-between", my: 1 }}
+              >
+                <Typography sx={{ fontWeight: "600" }}>Options:</Typography>
+
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={this.addOption}
+                >
+                  Add Option
+                </Button>
+              </Box>
+
               {map(options, ({ id, value }) => (
-                <div key={id} className="input-group mb-2">
-                  <input
-                    className="form-control"
+                <Box key={id} sx={{ mb: 2, display: "flex" }}>
+                  <TextField
+                    size="small"
                     placeholder="Option"
                     value={value}
                     onChange={(e) =>
@@ -249,8 +249,8 @@ class FormEditor extends Component {
                     }
                   />
                   <div className="input-group-append">
-                    <button
-                      className="btn btn-danger"
+                    <Button
+                      color="error"
                       disabled={options.length === 1}
                       style={{
                         cursor: `${
@@ -261,14 +261,57 @@ class FormEditor extends Component {
                         this.removeOption(id);
                       }}
                     >
-                      <i className="fa fa-times" />
-                    </button>
+                      <CancelIcon />
+                    </Button>
                   </div>
-                </div>
+                </Box>
               ))}
-              <button className="btn btn-primary" onClick={this.addOption}>
-                Add Option
-              </button>
+            </div>
+          )}
+          {element === "MultiselectDropdown" && (
+            <div className="mt-5">
+              <Box
+                sx={{ display: "flex", justifyContent: "space-between", my: 1 }}
+              >
+                <Typography sx={{ fontWeight: "600" }}>Options:</Typography>
+
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={this.addOption}
+                >
+                  Add Option
+                </Button>
+              </Box>
+
+              {map(options, ({ id, value }) => (
+                <Box key={id} sx={{ mb: 2, display: "flex" }}>
+                  <TextField
+                    size="small"
+                    placeholder="Option"
+                    value={value}
+                    onChange={(e) =>
+                      this.handleChange(e.target.value, id, "value")
+                    }
+                  />
+                  <div className="input-group-append">
+                    <Button
+                      color="error"
+                      disabled={options.length === 1}
+                      style={{
+                        cursor: `${
+                          options.length === 1 ? "not-allowed" : "pointer"
+                        }`,
+                      }}
+                      onClick={() => {
+                        this.removeOption(id);
+                      }}
+                    >
+                      <CancelIcon />
+                    </Button>
+                  </div>
+                </Box>
+              ))}
             </div>
           )}
 
@@ -483,7 +526,7 @@ class FormEditor extends Component {
           {/* ------------- DATE PICKER ------------- */}
           {element === "Date" && (
             <div className="mt-5" style={{ display: "flex" }}>
-              <div className="mr-5">
+              {/* <div className="mr-5">
                 <h5>Min Date:</h5>
                 <DatePicker
                   value={minDate || new Date()}
@@ -496,7 +539,7 @@ class FormEditor extends Component {
                   value={maxDate || new Date()}
                   onChange={(value) => this.handleOptions("maxDate", value)}
                 />
-              </div>
+              </div> */}
             </div>
           )}
 

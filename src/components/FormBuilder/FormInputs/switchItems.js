@@ -1,18 +1,20 @@
 import React from "react";
+import DateTimePick from "./DateTimePick";
 import {
-	Tags,
+  Tags,
   Label,
-	Range,
-	Email,
+  Range,
+  Email,
   Header,
   Rating,
   TextArea,
-	DatePick,
+  DatePick,
   Dropdown,
   TextInput,
+  MultiselectDropdown,
   Paragraph,
   Hyperlink,
-	Signature,
+  Signature,
   LineBreak,
   Checkboxes,
   NumberInput,
@@ -25,6 +27,8 @@ export default (item) => {
       return <Checkboxes item={item} />;
     case "Dropdown":
       return <Dropdown item={item} />;
+    case "MultiselectDropdown":
+      return <MultiselectDropdown item={item} />;
     case "Header":
       return <Header item={item} />;
     case "HyperLink":
@@ -48,12 +52,14 @@ export default (item) => {
     case "TextArea":
       return <TextArea item={item} />;
     case "TextInput":
-			return <TextInput item={item} />;
-		case "Email":
-			return <Email item={item} />;
-		case "Date":
-			return <DatePick item={item} />;
-		case "Signature":
-			return <Signature item={item} />;
+      return <TextInput item={item} />;
+    case "Email":
+      return <Email item={item} />;
+    case "Date":
+      return <DatePick item={item} />;
+    case "DateTime":
+      return <DateTimePick item={item} />;
+    case "Signature":
+      return <Signature item={item} />;
   }
 };
