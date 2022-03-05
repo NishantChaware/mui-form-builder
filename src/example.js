@@ -1,5 +1,5 @@
 import "./App.css";
-import { FormBuilder } from "./mainIndex";
+import { FormBuilder } from ".";
 
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";

@@ -68,14 +68,14 @@ class Preview extends Component {
                 variant="contained"
               >
                 Preview{" "}
-              </Button>
+              </Button> */}
               <Button
                 className="btn btn-dark float-right ml-3"
                 onClick={() => onSubmit(JSON.stringify(previewItems))}
                 disabled={isEmpty(previewItems)}
               >
                 Export
-              </Button> */}
+              </Button>
             </Box>
           </Box>
           <div

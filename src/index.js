@@ -1,17 +1,37 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-// import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Provider } from "react-redux";
+import Builder from "./components/FormBuilder";
+import Generator from "./components/FormGenerator";
+import store from "./store";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import "react-rangeslider/lib/index.css";
+import './css/font-awesome.min.css';
+// import "./css/bootstrap.min.css";
+// import "./src/App.scss";
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const FormBuilder = ({ onSubmit, items }) => (
+	<Provider store={store}>
+    <Builder 
+      onSubmit={onSubmit} 
+      items={items} 
+    />
+  </Provider>
+)
+
+const FormGenerator = ({ 
+	formData, 
+	responseData, 
+	readOnly, 
+	onSubmit 
+}) => (
+	<Provider store={store}>
+		<Generator 
+			formData={formData} 
+			responseData={responseData} 
+			readOnly={readOnly} 
+			onSubmit={onSubmit} 
+		/>
+	</Provider>
+)
+
+export { FormBuilder, FormGenerator }
