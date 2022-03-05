@@ -147,6 +147,13 @@ export default (item) => {
           },
         ],
       };
+    case "FileUpload":
+      return {
+        label: html,
+        required: false,
+        
+       
+      };
     case "TextArea":
     case "Email":
       return {

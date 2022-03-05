@@ -18,6 +18,7 @@ import NumberInput from "./NumberInput";
 import RadioButtons from "./RadioButtons";
 import MultiselectDropdown from "./MultiselectDropdown";
 import DateTimePick from "./DateTimePick";
+import FileUpload from "./FileUpload";
 
 export {
 	Tags,
@@ -39,5 +40,6 @@ export {
 	HeaderLabel,
   RadioButtons,
   MultiselectDropdown,
-  DateTimePick
+  DateTimePick,
+  FileUpload
 };

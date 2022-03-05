@@ -45,6 +45,11 @@ function App() {
               name: "DateTime",
               icon: "fa fa-calendar"
             },
+            {
+              key: "FileUpload",
+              name: "FileUpload",
+              icon: "fa fa-calendar"
+            },
           ]}
         />
       </div>

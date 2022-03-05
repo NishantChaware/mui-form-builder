@@ -367,43 +367,49 @@ class FormEditor extends Component {
           {/* ------------- CHECKBOXES OPTIONS ------------- */}
           {element === "Checkboxes" && (
             <div className="mt-5">
-              <h5>Options:</h5>
-              {map(options, ({ id, value }) => (
-                <div key={id} className="input-group mb-2">
-                  <input
-                    className="form-control"
-                    placeholder="Option"
-                    value={value}
-                    name={editorState.id}
-                    onChange={(e) =>
-                      this.handleChange(e.target.value, id, "value")
-                    }
-                  />
-                  <div className="input-group-append">
-                    <button
-                      className="btn btn-danger"
-                      disabled={options.length === 1}
-                      style={{
-                        cursor: `${
-                          options.length === 1 ? "not-allowed" : "pointer"
-                        }`,
-                      }}
-                      onClick={() => {
-                        this.removeOption(id);
-                      }}
-                    >
-                      <i className="fa fa-times" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-              <button
-                className="btn btn-primary"
-                onClick={() => this.addOption("Checkboxes")}
+            <Box
+              sx={{ display: "flex", justifyContent: "space-between", my: 1 }}
+            >
+              <Typography sx={{ fontWeight: "600" }}>Options:</Typography>
+
+              <Button
+                variant="contained"
+                size="small"
+                onClick={this.addOption}
               >
                 Add Option
-              </button>
-            </div>
+              </Button>
+            </Box>
+
+            {map(options, ({ id, value }) => (
+              <Box key={id} sx={{ mb: 2, display: "flex" }}>
+                <TextField
+                  size="small"
+                  placeholder="Option"
+                  value={value}
+                  onChange={(e) =>
+                    this.handleChange(e.target.value, id, "value")
+                  }
+                />
+                <div className="input-group-append">
+                  <Button
+                    color="error"
+                    disabled={options.length === 1}
+                    style={{
+                      cursor: `${
+                        options.length === 1 ? "not-allowed" : "pointer"
+                      }`,
+                    }}
+                    onClick={() => {
+                      this.removeOption(id);
+                    }}
+                  >
+                    <CancelIcon />
+                  </Button>
+                </div>
+              </Box>
+            ))}
+          </div>
           )}
 
           {/* ------------- RADIO BUTTON OPTIONS ------------- */}

@@ -80,6 +80,11 @@ export default () => [
     icon: "fa fa-at"
   },
   {
+    key: "FileUpload",
+    name: "FileUpload",
+    icon: "fa fa-at"
+  },
+  {
     key: "Date",
     name: "Date",
     icon: "fa fa-calendar"

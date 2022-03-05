@@ -1,5 +1,6 @@
 import React from "react";
 import DateTimePick from "./DateTimePick";
+import FileUpload from "./FileUpload";
 import {
   Tags,
   Label,
@@ -29,6 +30,8 @@ export default (item) => {
       return <Dropdown item={item} />;
     case "MultiselectDropdown":
       return <MultiselectDropdown item={item} />;
+    case "FileUpload":
+      return <FileUpload item={item} />;
     case "Header":
       return <Header item={item} />;
     case "HyperLink":

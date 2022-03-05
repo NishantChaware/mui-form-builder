@@ -6,6 +6,7 @@ import isEqual from "lodash/isEqual";
 import HeaderBar from "../FormInputs/HeaderBar";
 import switchItems from "../FormInputs/switchItems";
 import { Box, Grid } from "@mui/material";
+import CustomHeaderBar from "../FormInputs/CustomHeaderBar";
 
 const cardSource = {
   beginDrag(props) {
@@ -96,7 +97,7 @@ class FormInputs extends Component {
               onMouseOver={() => this.setState({ isHovering: true })}
               onMouseLeave={() => this.setState({ isHovering: false })}
             >
-              <HeaderBar
+              <CustomHeaderBar
                 item={item}
                 id={id}
                 removeItem={removeItem}

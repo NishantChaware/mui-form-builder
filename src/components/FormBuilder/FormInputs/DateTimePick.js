@@ -30,16 +30,14 @@ const DateTimePick = (props) => {
   const [value, setValue] = useState(null);
 
   return (
-    <div>
-      <DateTimePicker
-        label={item.label}
-        value={value}
-        onChange={(newValue) => {
-          setValue(newValue);
-        }}
-        renderInput={(params) => <TextField {...params} />}
-      />
-    </div>
+    <DateTimePicker
+      label={item.label}
+      value={value}
+      onChange={(newValue) => {
+        setValue(newValue);
+      }}
+      renderInput={(params) => <TextField {...params} fullWidth />}
+    />
   );
 };
 

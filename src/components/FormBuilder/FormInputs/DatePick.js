@@ -79,7 +79,7 @@ const DatePick = (props) => {
         onChange={(newValue) => {
           setValue(newValue);
         }}
-        renderInput={(params) => <TextField {...params} />}
+        renderInput={(params) => <TextField {...params} fullWidth/>}
       />
     </div>
   );
