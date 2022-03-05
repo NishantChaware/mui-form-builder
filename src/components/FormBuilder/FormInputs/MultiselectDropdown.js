@@ -51,7 +51,6 @@ const MultiselectDropdown = (props) => {
   };
 
   const options = generator ? props.options : props.item.options;
-  
 
   return (
     <FormControl fullWidth>
