@@ -1,8 +1,7 @@
 import "./App.css";
-import { FormBuilder } from ".";
-
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import FormBuilder from "./src/components/FormBuilder";
 function App() {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -38,17 +37,17 @@ function App() {
             {
               key: "Date",
               name: "Date",
-              icon: "fa fa-calendar"
+              icon: "fa fa-calendar",
             },
             {
               key: "DateTime",
               name: "DateTime",
-              icon: "fa fa-calendar"
+              icon: "fa fa-calendar",
             },
             {
               key: "FileUpload",
               name: "FileUpload",
-              icon: "fa fa-calendar"
+              icon: "fa fa-calendar",
             },
           ]}
         />
