@@ -2,10 +2,10 @@ const path = require("path");
 
 module.exports = {
   mode: "production",
-  entry: "./src/index.js",
+  entry: "./src/mainIndex.js",
   output: {
     path: path.resolve("lib"),
-    filename: "index.js",
+    filename: "mainIndex.js",
     libraryTarget: "commonjs2",
   },
   module: {

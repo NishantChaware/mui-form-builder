@@ -28,12 +28,12 @@ export default () => [
   {
     key: "Dropdown",
     name: "Dropdown",
-    icon: "ArrowDropDown",
+    icon: "ArrowDropDownCircle",
   },
   {
     key: "MultiselectDropdown",
     name: "MultiselectDropdown",
-    icon: "ArrowDropDown",
+    icon: "ArrowDropDownCircle",
   },
   // {
   //   key: "Tags",

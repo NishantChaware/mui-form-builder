@@ -41,7 +41,7 @@ const ToolbarItem = (props) => {
         onClick={() => props.addItem(props.data.key)}
       >
         <ListItemIcon sx={{ mr: -1 }}>
-          {React.createElement(Icons[item.icon])}
+          {React.createElement(Icons[data.icon])}
         </ListItemIcon>
         <ListItemText primary={data.name} />
       </ListItem>

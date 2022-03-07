@@ -58,6 +58,7 @@
     "webpack-cli": "^3.2.1"
   },
   "scripts": {
+    "start": "react-scripts start",
     "build": "webpack"
   },
   "eslintConfig": {
@@ -68,5 +69,17 @@
   },
   "repository": {
     "url": "https://github.com/NishantChaware/mui-form-builder"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

@@ -1,7 +1,7 @@
 import "./App.css";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import { FormBuilder } from "./index";
+import { FormBuilder } from "./mainIndex";
 function Example() {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
