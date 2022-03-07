@@ -1,14 +1,14 @@
 export default () => [
-  {
-    key: "Header",
-    name: "Header Text",
-    icon: "fa fa-header"
-  },
-  {
-    key: "Label",
-    name: "Label",
-    icon: "fa fa-font"
-  },
+  // {
+  //   key: "Header",
+  //   name: "Header Text",
+  //   icon: "fa fa-header"
+  // },
+  // {
+  //   key: "Label",
+  //   name: "Label",
+  //   icon: "fa fa-font"
+  // },
   // {
   //   key: "Paragraph",
   //   name: "Paragraph",
@@ -19,15 +19,21 @@ export default () => [
   //   name: "Line Break",
   //   icon: "fa fa-arrows-h"
   // },
+
+  {
+    key: "TextInput",
+    name: "Text Input",
+    icon: "TextFormat",
+  },
   {
     key: "Dropdown",
     name: "Dropdown",
-    icon: "fa fa-caret-square-o-down"
+    icon: "ArrowDropDown",
   },
   {
     key: "MultiselectDropdown",
     name: "MultiselectDropdown",
-    icon: "fa fa-caret-square-o-down"
+    icon: "ArrowDropDown",
   },
   // {
   //   key: "Tags",
@@ -37,33 +43,29 @@ export default () => [
   {
     key: "Checkboxes",
     name: "Checkboxes",
-    icon: "fa fa-check-square-o"
+    icon: "CheckBox",
   },
-  {
-    key: "RadioButtons",
-    name: "Multiple Choice",
-    icon: "fa fa-dot-circle-o"
-  },
-  {
-    key: "TextInput",
-    name: "Text Input",
-    icon: "fa fa-font"
-  },
-  {
-    key: "NumberInput",
-    name: "Number Input",
-    icon: "fa fa-plus"
-  },
+  // {
+  //   key: "RadioButtons",
+  //   name: "Multiple Choice",
+  //   icon: "fa fa-dot-circle-o"
+  // },
+
+  // {
+  //   key: "NumberInput",
+  //   name: "Number Input",
+  //   icon: "fa fa-plus"
+  // },
   {
     key: "TextArea",
     name: "Multi-line Input",
-    icon: "fa fa-text-height"
+    icon: "TextRotateVertical",
   },
-  {
-    key: "Rating",
-    name: "Rating",
-    icon: "fa fa-star"
-  },
+  // {
+  //   key: "Rating",
+  //   name: "Rating",
+  //   icon: "fa fa-star"
+  // },
   // {
   //   key: "HyperLink",
   //   name: "Web site",
@@ -74,25 +76,25 @@ export default () => [
   //   name: "Range",
   //   icon: "fa fa-sliders"
   // },
-  {
-    key: "Email",
-    name: "Email",
-    icon: "fa fa-at"
-  },
+  // {
+  //   key: "Email",
+  //   name: "Email",
+  //   icon: "fa fa-at"
+  // },
   {
     key: "FileUpload",
     name: "FileUpload",
-    icon: "fa fa-at"
+    icon: "FileUpload",
   },
   {
     key: "Date",
     name: "Date",
-    icon: "fa fa-calendar"
+    icon: "CalendarToday",
   },
   {
     key: "DateTime",
     name: "DateTime",
-    icon: "fa fa-calendar"
+    icon: "Schedule",
   },
   // {
   //   key: "Signature",

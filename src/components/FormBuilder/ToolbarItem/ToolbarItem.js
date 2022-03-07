@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { addItem } from "../../../actions/formBuilderActions";
 import { ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import * as Icons from "@mui/icons-material";
 
 // type, spec and collect are the paramters to the DragSource HOC
 const type = (props) => "items";
@@ -36,11 +37,11 @@ const ToolbarItem = (props) => {
   return connectDragSource(
     <div>
       <ListItem
-        sx={{ cursor: "pointer", opacity, backgroundColor }}
+        sx={{ cursor: "pointer", opacity }}
         onClick={() => props.addItem(props.data.key)}
       >
-        <ListItemIcon sx={{ mr: -3 }}>
-          <i className={classNames(data.icon, "mr-3")} />
+        <ListItemIcon sx={{ mr: -1 }}>
+          {React.createElement(Icons[item.icon])}
         </ListItemIcon>
         <ListItemText primary={data.name} />
       </ListItem>
