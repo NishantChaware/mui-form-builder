@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SignatureCanvas from "react-signature-canvas";
+// import SignatureCanvas from "react-signature-canvas";
 import HeaderLabel from "./HeaderLabel";
 
 class Signature extends Component {

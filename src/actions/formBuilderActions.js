@@ -9,7 +9,7 @@ import {
   SUBMIT_EDITOR_STATE,
 } from "./types";
 
-export const addItem = (element) => async (dispatch) => {
+export const addItem = (element) => (dispatch) => {
   const id = uuid();
   const props = addPropsToItem(element);
   const item = { id, element, ...props };

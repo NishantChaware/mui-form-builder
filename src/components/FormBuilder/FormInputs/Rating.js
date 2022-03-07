@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import StarRatings from "react-star-ratings";
+// import StarRatings from "react-star-ratings";
 import HeaderLabel from "./HeaderLabel";
 
 class Rating extends Component {

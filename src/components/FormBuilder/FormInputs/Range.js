@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Slider from "react-rangeslider";
+// import Slider from "react-rangeslider";
 import HeaderLabel from "./HeaderLabel";
 
 class Range extends Component {
