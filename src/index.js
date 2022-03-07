@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from "react-redux";
-import Builder from "./src/components/FormBuilder";
-import Generator from "./src/components/FormGenerator";
-import store from "./src/store";
+import Builder from "./components/FormBuilder";
+import Generator from "./components/FormGenerator";
+import store from "./store";
 
 import "react-rangeslider/lib/index.css";
 import './css/font-awesome.min.css';
