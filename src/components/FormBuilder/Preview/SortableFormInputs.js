@@ -7,7 +7,7 @@ import HeaderBar from "../FormInputs/HeaderBar";
 import switchItems from "../FormInputs/switchItems";
 import { Box, Grid } from "@mui/material";
 import CustomHeaderBar from "../FormInputs/CustomHeaderBar";
-
+import DragHandleIcon from "@mui/icons-material/DragHandle";
 const cardSource = {
   beginDrag(props) {
     return {
@@ -85,18 +85,55 @@ class FormInputs extends Component {
     const display = isDragging ? "none" : "block";
 
     return (
-      connectDragSource &&
-      connectDropTarget &&
-      connectDragSource(
-        connectDropTarget(
-          <div className="input-wrapper">
-            {isDragging && <div className="whiledragging-dropzone"> </div>}
-            <div
-              className=""
-              style={{ display }}
-              onMouseOver={() => this.setState({ isHovering: true })}
-              onMouseLeave={() => this.setState({ isHovering: false })}
+      <Grid item md={6} xs={12}>
+        <Box
+          ref={(instance) => {
+            connectDropTarget(findDOMNode(instance));
+          }}
+        >
+          {isDragging && (
+            <Box
+              sx={{
+                height: "100%",
+                backgroundColor: "divider",
+                borderColor: "primary.light",
+                border: "1px dashed",
+                height: "56px",
+                marginTop: "24px",
+              }}
             >
+              {" "}
+            </Box>
+          )}
+          <div
+            className=""
+            style={{ display }}
+            onMouseOver={() => this.setState({ isHovering: true })}
+            onMouseLeave={() => this.setState({ isHovering: false })}
+          >
+            <Box
+              ref={(instance) => {
+                connectDragSource(findDOMNode(instance));
+              }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+              }}
+            >
+              <Box
+                ref={(instance) => {
+                  connectDragSource(findDOMNode(instance));
+                }}
+              >
+                <DragHandleIcon
+                  sx={{
+                    mr: 1,
+                    "&:hover": { cursor: "grab" },
+                  }}
+                />
+              </Box>
+
               <CustomHeaderBar
                 item={item}
                 id={id}
@@ -104,11 +141,12 @@ class FormInputs extends Component {
                 showEditor={showEditor}
                 isHovering={this.state.isHovering}
               />
-              {switchItems(item)}
-            </div>
+            </Box>
+
+            {switchItems(item)}
           </div>
-        )
-      )
+        </Box>
+      </Grid>
     );
   }
 }

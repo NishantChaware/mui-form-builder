@@ -14,8 +14,7 @@ const Generator = ({
 				className="jumbotron bg-default mt-2 mx-auto"
 				style={{
 					minHeight: "100%",
-					maxWidth: "700px",
-					border: "1px solid #ccc"
+					// border: "1px solid #ccc"
 				}}
 			>
 				<ValidatedFormInputs

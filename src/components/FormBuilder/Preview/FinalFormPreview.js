@@ -1,42 +1,31 @@
 import React from "react";
 import map from "lodash/map";
 import switchItems from "../FormInputs/switchItems";
+import { Button, Grid, Box, Container, Typography } from "@mui/material";
 
 const FinalFormPreview = ({ hideFinalPreview, data }) => (
-  <div className="final-preview">
-    <div
-      className="jumbotron bg-default mt-3 mx-auto"
-      style={{
-				minHeight: "100%",
-        maxWidth: "700px",
-        border: "1px solid #ccc"
+  <Container sx={{  px: 3, mt: 3, py: 1 }} maxWidth="lg">
+    <Box
+      sx={{
+        width: "100%",
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "space-between",
       }}
     >
-      <div style={{ height: "50px" }}>
-        <span
-          className="float-right"
-          style={{ cursor: "pointer" }}
-          onClick={hideFinalPreview}
-        >
-          <i className="fa fa-times" />
-        </span>
-      </div>
-      {map(data, item => (
-        <div key={item.id} className="mb-4">
+      <Typography variant="h4">Form Preview</Typography>
+      <Button onClick={hideFinalPreview}>Close</Button>
+    </Box>
+    <hr />
+
+    <Grid container spacing={3} sx={{ mt: 1 }}>
+      {map(data, (item) => (
+        <Grid item md={6} xs={12} key={item.id}>
           {switchItems(item)}
-        </div>
+        </Grid>
       ))}
-      <div style={{ height: "50px" }} className="mt-5">
-        <hr />
-        <button
-          className="btn btn-outline-secondary float-right"
-          onClick={hideFinalPreview}
-        >
-          Close
-        </button>
-      </div>
-    </div>
-  </div>
+    </Grid>
+  </Container>
 );
 
 export default FinalFormPreview;

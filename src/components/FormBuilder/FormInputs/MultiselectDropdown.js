@@ -69,6 +69,7 @@ const MultiselectDropdown = (props) => {
             {selected.map((value) => (
               <Chip
                 key={value}
+                size='small'
                 label={options.find(({ id }) => id === value).value}
               />
             ))}

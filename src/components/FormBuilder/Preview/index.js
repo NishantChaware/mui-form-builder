@@ -10,7 +10,7 @@ import {
 } from "../../../actions/formBuilderActions";
 import FormInputs from "./SortableFormInputs";
 import FinalFormPreview from "./FinalFormPreview";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Dialog, Grid, Slide, Typography } from "@mui/material";
 
 // DropTarget parameters
 const type = () => "items";
@@ -20,6 +20,11 @@ const collect = (connect, monitor) => ({
   hovered: monitor.isOver(),
   item: monitor.getItem(),
 });
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 
 class Preview extends Component {
   constructor(props) {
@@ -48,33 +53,41 @@ class Preview extends Component {
 
     return connectDropTarget(
       <div style={{ height: "100%" }} className="mt-3">
-        {this.state.showFinalPreview && (
+        <Dialog
+          fullScreen
+          open={this.state.showFinalPreview}
+          onClose={this.hideFinalPreview}
+          TransitionComponent={Transition}
+
+        >
           <FinalFormPreview
+            fullScreen
             data={previewItems}
             hideFinalPreview={this.hideFinalPreview}
           />
-        )}
-        <Box >
-          <Box  sx={{display: 'flex', justifyContent: 'space-between'}}> 
+        </Dialog>
+
+        <Box>
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
             <Typography align="left" variant="h5">
-              Edit Layout
+              Custom Layout
             </Typography>
 
             <Box>
-              {/* <Button
+              <Button
                 className="btn btn-primary float-right ml-3"
                 onClick={() => this.setState({ showFinalPreview: true })}
                 disabled={isEmpty(previewItems)}
-                variant="contained"
               >
                 Preview{" "}
-              </Button> */}
+              </Button>
               <Button
+                variant="contained"
                 className="btn btn-dark float-right ml-3"
                 onClick={() => onSubmit(JSON.stringify(previewItems))}
                 disabled={isEmpty(previewItems)}
               >
-                Export
+                Save
               </Button>
             </Box>
           </Box>
@@ -87,7 +100,8 @@ class Preview extends Component {
               alignContent: "flex-start",
               justifyContent: "space-between",
               border: "1px dashed black",
-              padding: "0 1rem",
+              padding: "1rem 1rem",
+              margin: "1rem 0rem",
             }}
           >
             {isEmpty(previewItems) && (
@@ -95,19 +109,20 @@ class Preview extends Component {
                 Select / Drop an item from Toolbox
               </h3>
             )}
-
-            {!isEmpty(previewItems) &&
-              previewItems.map((item, i) => (
-                <FormInputs
-                  index={i}
-                  item={item}
-                  id={item.id}
-                  key={item.id}
-                  dragItem={dragItem}
-                  removeItem={removeItem}
-                  showEditor={showEditor}
-                />
-              ))}
+            <Grid container spacing={3}>
+              {!isEmpty(previewItems) &&
+                previewItems.map((item, i) => (
+                  <FormInputs
+                    index={i}
+                    item={item}
+                    id={item.id}
+                    key={item.id}
+                    dragItem={dragItem}
+                    removeItem={removeItem}
+                    showEditor={showEditor}
+                  />
+                ))}
+            </Grid>
           </div>
         </Box>
       </div>
