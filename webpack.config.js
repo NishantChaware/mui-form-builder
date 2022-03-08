@@ -5,7 +5,7 @@ module.exports = {
   entry: "./src/mainIndex.js",
   output: {
     path: path.resolve("lib"),
-    filename: "mainIndex.js",
+    filename: "index.js",
     libraryTarget: "commonjs2",
   },
   module: {

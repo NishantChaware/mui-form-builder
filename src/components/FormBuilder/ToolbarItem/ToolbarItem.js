@@ -40,7 +40,7 @@ const ToolbarItem = (props) => {
         sx={{ cursor: "pointer", opacity }}
         onClick={() => props.addItem(props.data.key)}
       >
-        <ListItemIcon sx={{ mr: -1 }}>
+        <ListItemIcon>
           {React.createElement(Icons[data.icon])}
         </ListItemIcon>
         <ListItemText primary={data.name} />
