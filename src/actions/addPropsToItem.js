@@ -1,6 +1,6 @@
 import { v4 as uuid } from "uuid";
-import htmlToDraft from "html-to-draftjs";
-import { ContentState, EditorState, convertToRaw } from "draft-js";
+// import htmlToDraft from "html-to-draftjs";
+// import { ContentState, EditorState, convertToRaw } from "draft-js";
 
 // convert html to draftjs-editorState and then return raw JS
 // editorState is stored as raw JS object in the Redux store
@@ -136,6 +136,7 @@ export default (item) => {
       return {
         label: html,
         required: false,
+        value: [],
         options: [
           {
             id: uuid(),

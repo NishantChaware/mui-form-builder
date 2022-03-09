@@ -74,7 +74,7 @@ const DatePick = (props) => {
       </React.Fragment> */}
 
       <DatePicker
-        label={item.label}
+        label={generator ? label : item.label}
         value={value}
         onChange={(newValue) => {
           setValue(newValue);

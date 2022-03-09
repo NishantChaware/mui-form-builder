@@ -31,17 +31,21 @@ const Dropdown = (props) => {
       }
     : {};
 
+
+    console.log(input)
   const options = generator ? props.options : props.item.options;
 
   return (
     <FormControl fullWidth>
-      <InputLabel id="demo-simple-select-label">{item.label}</InputLabel>
+      <InputLabel id="dropdown-label">
+        {generator ? label : item.label}
+      </InputLabel>
 
       <Select
         disabled={disabled}
         {..._props}
-        label={item.label}
-        labelId="demo-simple-select-label"
+        label={generator ? label : item.label}
+        labelId="dropdown-label"
       >
         {options.map(({ id, value }) => (
           <MenuItem key={id} value={id}>

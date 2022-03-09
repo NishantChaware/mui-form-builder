@@ -11,16 +11,26 @@ import {
 } from "@mui/material";
 
 const Checkboxes = (props) => {
-  let initialValues = {};
-  props.item.options.map(({ id, checked }) => (initialValues[id] = checked));
-  const [state, setState] = useState(initialValues);
+  // let initialValues = {};
+  // props.item.options.map(({ id, checked }) => (initialValues[id] = checked));
+  // const [state, setState] = useState(initialValues);
 
-  const handleChange = (event) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.checked,
-    });
-  };
+  // const handleChange = (event) => {
+  //   setState({
+  //     ...state,
+  //     [event.target.name]: event.target.checked,
+  //   });
+  // };
+
+  
+  const handleChange = (checked, input, id) => {
+    let newValue = [...input.value];
+    checked 
+      ? newValue = [...newValue, id] 
+      : newValue = newValue.filter(i => i !== id); 
+    return input.onChange(newValue)
+  }
+
 
   const {
     type,
@@ -67,7 +77,7 @@ const Checkboxes = (props) => {
     /> */}
 
       <FormControl component="fieldset" variant="standard">
-        <FormLabel component="legend">{item.label}</FormLabel>
+        <FormLabel component="legend">{generator ? label : item.label}</FormLabel>
 
         <FormGroup>
           {map(options, ({ id, value }) => (
@@ -81,10 +91,9 @@ const Checkboxes = (props) => {
                     name={id}
                     value={value}
                     readOnly={generator ? false : true}
-                    checked={state[id] ? state[id] : false}
-                    onChange={(e) => {
-                      handleChange(e);
-                    }}
+                    checked={isChecked(id)}
+                    onChange={e => change(e.target.checked, id)}
+
                   />
                 }
                 label={value}

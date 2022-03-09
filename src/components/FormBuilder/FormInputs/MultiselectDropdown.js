@@ -28,48 +28,42 @@ const MultiselectDropdown = (props) => {
     ? {
         ...input,
         disabled: readOnly,
-        value: defaultValue || input.value,
-        onChange: (e) => {
-          input.onChange(e.target.value);
+        value: input.value || [],
+        onChange: (e, values) => {
+          const {
+            target: { value },
+          } = e;
+          input.onChange(typeof value === "string" ? value.split(",") : value);
         },
         style: {
           borderColor: meta.touched && required && meta.error ? "red" : "",
         },
       }
-    : {};
-
-  const [selected, setSelected] = useState([]);
-
-  const handleChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setSelected(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
-  };
+    : {
+        value: [],
+      };
 
   const options = generator ? props.options : props.item.options;
 
   return (
     <FormControl fullWidth>
-      <InputLabel id="demo-simple-select-label">{item.label}</InputLabel>
+      <InputLabel id="demo-simple-select-label">
+        {" "}
+        {generator ? label : item.label}
+      </InputLabel>
 
       <Select
         disabled={disabled}
         {..._props}
-        value={selected}
-        onChange={handleChange}
         multiple
-        label={item.label}
+        label={generator ? label : item.label}
         labelId="demo-simple-select-label"
         renderValue={(selected) => (
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
             {selected.map((value) => (
               <Chip
                 key={value}
-                size='small'
+                size="small"
                 label={options.find(({ id }) => id === value).value}
               />
             ))}

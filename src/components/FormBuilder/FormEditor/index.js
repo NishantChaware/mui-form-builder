@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { v4 as uuid } from "uuid";
-import { Editor } from "react-draft-wysiwyg";
-import { convertFromRaw, EditorState, convertToRaw } from "draft-js";
-import { map, filter } from "lodash";
+// import { Editor } from "react-draft-wysiwyg";
+// import { convertFromRaw, EditorState, convertToRaw } from "draft-js";
+import map from "lodash/map";
+import filter from "lodash/filter";
 import {
   hideEditor,
   submitEditorState,
 } from "../../../actions/formBuilderActions";
-import DatePicker from '@mui/lab/DatePicker';
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import DatePicker from "@mui/lab/DatePicker";
+// import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import {
   Box,
   Button,
@@ -367,49 +368,49 @@ class FormEditor extends Component {
           {/* ------------- CHECKBOXES OPTIONS ------------- */}
           {element === "Checkboxes" && (
             <div className="mt-5">
-            <Box
-              sx={{ display: "flex", justifyContent: "space-between", my: 1 }}
-            >
-              <Typography sx={{ fontWeight: "600" }}>Options:</Typography>
-
-              <Button
-                variant="contained"
-                size="small"
-                onClick={this.addOption}
+              <Box
+                sx={{ display: "flex", justifyContent: "space-between", my: 1 }}
               >
-                Add Option
-              </Button>
-            </Box>
+                <Typography sx={{ fontWeight: "600" }}>Options:</Typography>
 
-            {map(options, ({ id, value }) => (
-              <Box key={id} sx={{ mb: 2, display: "flex" }}>
-                <TextField
+                <Button
+                  variant="contained"
                   size="small"
-                  placeholder="Option"
-                  value={value}
-                  onChange={(e) =>
-                    this.handleChange(e.target.value, id, "value")
-                  }
-                />
-                <div className="input-group-append">
-                  <Button
-                    color="error"
-                    disabled={options.length === 1}
-                    style={{
-                      cursor: `${
-                        options.length === 1 ? "not-allowed" : "pointer"
-                      }`,
-                    }}
-                    onClick={() => {
-                      this.removeOption(id);
-                    }}
-                  >
-                    <CancelIcon />
-                  </Button>
-                </div>
+                  onClick={this.addOption}
+                >
+                  Add Option
+                </Button>
               </Box>
-            ))}
-          </div>
+
+              {map(options, ({ id, value }) => (
+                <Box key={id} sx={{ mb: 2, display: "flex" }}>
+                  <TextField
+                    size="small"
+                    placeholder="Option"
+                    value={value}
+                    onChange={(e) =>
+                      this.handleChange(e.target.value, id, "value")
+                    }
+                  />
+                  <div className="input-group-append">
+                    <Button
+                      color="error"
+                      disabled={options.length === 1}
+                      style={{
+                        cursor: `${
+                          options.length === 1 ? "not-allowed" : "pointer"
+                        }`,
+                      }}
+                      onClick={() => {
+                        this.removeOption(id);
+                      }}
+                    >
+                      <CancelIcon />
+                    </Button>
+                  </div>
+                </Box>
+              ))}
+            </div>
           )}
 
           {/* ------------- RADIO BUTTON OPTIONS ------------- */}

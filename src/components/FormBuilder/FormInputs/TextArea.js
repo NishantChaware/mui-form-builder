@@ -35,7 +35,7 @@ const TextArea = (props) => {
         <TextField
           fullWidth
           {..._props}
-          label={item.label}
+          label={generator ? label : item.label}
           required={generator ? required : item.required}
           multiline
         />

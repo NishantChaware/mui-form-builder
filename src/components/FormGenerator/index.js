@@ -1,30 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ValidatedFormInputs from "./ValidatedFormInputs";
+import { Container } from "@mui/material";
 
-const Generator = ({
-  onSubmit,
-  readOnly,
-  formData,
-  responseData
-}) => {
+const Generator = ({ onSubmit, readOnly, formData, responseData }) => {
   return (
-		<div className="demo-form">
-			<div
-				className="jumbotron bg-default mt-2 mx-auto"
-				style={{
-					minHeight: "100%",
-					// border: "1px solid #ccc"
-				}}
-			>
-				<ValidatedFormInputs
-					formData={formData}
-					responseData={responseData}
-					onSubmit={onSubmit}
-					readOnly={readOnly}
-				/>
-			</div>
-		</div>
+    <Container sx={{ px: 3, mt: 3, py: 1 }} maxWidth="lg">
+      <ValidatedFormInputs
+        formData={formData}
+        responseData={responseData}
+        onSubmit={onSubmit}
+        readOnly={readOnly}
+      />
+    </Container>
   );
 };
 
@@ -32,11 +20,11 @@ Generator.propTypes = {
   formData: PropTypes.array.isRequired,
   onSubmit: PropTypes.func.isRequired,
   responseData: PropTypes.object,
-  readOnly: PropTypes.bool
+  readOnly: PropTypes.bool,
 };
 
 Generator.defaultProps = {
-  readOnly: false
+  readOnly: false,
 };
 
 export default Generator;
