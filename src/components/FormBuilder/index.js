@@ -21,7 +21,7 @@ const Builder = ({ editorVisible, onSubmit, items , defaultFields}) => {
         <FormEditor />
       </Dialog>
       <Grid container sx={{ p: 3 , pl: 0, pt: 0}} >
-        <Grid item md={2.5} xs={12} component={Paper}>
+        <Grid item md={2.5} xs={12} component={Paper} sx={{height: "100vh", maxHeight: "96vh", m: 0, p: 0}}>
           <Toolbar items={items} />
         </Grid>
         <Grid item md={9.5} xs={12} sx={{pt: 3, pl: 3}}>
