@@ -13,6 +13,25 @@ function Example() {
             console.log(fdata);
             setData(fdata);
           }}
+          defaultFields={[
+            {
+              id: "b1f5b457-3602-44aa-a5b7-04e9788a0fe5",
+              element: "TextInput",
+              label: "Placeholder Label",
+              required: false,
+              value: [],
+              options: [
+                {
+                  id: "7447470c-970c-4e7c-8828-34e0cae0fc1c",
+                  value: "Option1",
+                },
+                {
+                  id: "f5d332cc-c4bc-4c70-aaaf-083f47ad382f",
+                  value: "Option2",
+                },
+              ],
+            },
+          ]}
         />
         {data && (
           <FormGenerator

@@ -5,7 +5,7 @@ import { Container } from "@mui/material";
 
 const Generator = ({ onSubmit, readOnly, formData, responseData }) => {
   return (
-    <Container sx={{ px: 3, mt: 3, py: 1 }} maxWidth="lg">
+    <Container sx={{ px: 3, py: 1 }} maxWidth="lg">
       <ValidatedFormInputs
         formData={formData}
         responseData={responseData}

@@ -8,10 +8,10 @@ import FormEditor from "./FormEditor";
 import Toolbar from "./Toolbar";
 import Preview from "./Preview";
 import defaultItems from "./Toolbar/defaultItems";
-import { Dialog, Grid } from "@mui/material";
+import { Dialog, Grid, Paper } from "@mui/material";
 import { hideEditor } from "../../actions/formBuilderActions";
 
-const Builder = ({ editorVisible, onSubmit, items }) => {
+const Builder = ({ editorVisible, onSubmit, items , defaultFields}) => {
   return (
     <React.Fragment>
       <Dialog
@@ -20,12 +20,12 @@ const Builder = ({ editorVisible, onSubmit, items }) => {
       >
         <FormEditor />
       </Dialog>
-      <Grid container sx={{ p: 3 }}>
-        <Grid item md={3} xs={12}>
+      <Grid container sx={{ p: 3 , pl: 0, pt: 0}} >
+        <Grid item md={2.5} xs={12} component={Paper}>
           <Toolbar items={items} />
         </Grid>
-        <Grid item md={8} xs={12}>
-          <Preview onSubmit={onSubmit} />
+        <Grid item md={9.5} xs={12} sx={{pt: 3, pl: 3}}>
+          <Preview onSubmit={onSubmit} defaultFields={defaultFields} />
         </Grid>
       </Grid>
     </React.Fragment>

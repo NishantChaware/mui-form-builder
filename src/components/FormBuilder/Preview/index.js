@@ -10,7 +10,16 @@ import {
 } from "../../../actions/formBuilderActions";
 import FormInputs from "./SortableFormInputs";
 import FinalFormPreview from "./FinalFormPreview";
-import { Box, Button, Dialog, Grid, Slide, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Dialog,
+  Grid,
+  Slide,
+  Typography,
+} from "@mui/material";
+import { FormGenerator } from "../../../mainIndex";
 
 // DropTarget parameters
 const type = () => "items";
@@ -24,7 +33,6 @@ const collect = (connect, monitor) => ({
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-
 
 class Preview extends Component {
   constructor(props) {
@@ -47,6 +55,7 @@ class Preview extends Component {
       showEditor,
       previewItems,
       connectDropTarget,
+      defaultFields,
     } = this.props;
 
     const border = hovered ? "1px solid green" : "1px solid #ccc";
@@ -58,7 +67,6 @@ class Preview extends Component {
           open={this.state.showFinalPreview}
           onClose={this.hideFinalPreview}
           TransitionComponent={Transition}
-
         >
           <FinalFormPreview
             fullScreen
@@ -91,39 +99,46 @@ class Preview extends Component {
               </Button>
             </Box>
           </Box>
-          <div
-            style={{
-              minHeight: "80vh",
-              display: "flex",
-              flexWrap: "wrap",
-              flexDirection: "row",
-              alignContent: "flex-start",
-              justifyContent: "space-between",
-              border: "1px dashed black",
-              padding: "1rem 1rem",
-              margin: "1rem 0rem",
-            }}
+
+          {defaultFields && <FormGenerator readOnly formData={defaultFields} />}
+
+          <Container
+            maxWidth="lg"
+            sx={{ px: 3, mt: 3, py: 1, border: "1px dashed black" }}
           >
-            {isEmpty(previewItems) && (
-              <h3 className="list-group-item bg-light text-center text-muted">
-                Select / Drop an item from Toolbox
-              </h3>
-            )}
-            <Grid container spacing={3}>
-              {!isEmpty(previewItems) &&
-                previewItems.map((item, i) => (
-                  <FormInputs
-                    index={i}
-                    item={item}
-                    id={item.id}
-                    key={item.id}
-                    dragItem={dragItem}
-                    removeItem={removeItem}
-                    showEditor={showEditor}
-                  />
-                ))}
-            </Grid>
-          </div>
+            <div
+              style={{
+                minHeight: "50vh",
+                display: "flex",
+                flexWrap: "wrap",
+                flexDirection: "row",
+                alignContent: "flex-start",
+                justifyContent: "space-between",
+                // padding: "1rem 1rem",
+                // margin: "1rem 0rem",
+              }}
+            >
+              {isEmpty(previewItems) && (
+                <h3 className="list-group-item bg-light text-center text-muted">
+                  Select / Drop an item from Toolbox
+                </h3>
+              )}
+              <Grid container spacing={3}>
+                {!isEmpty(previewItems) &&
+                  previewItems.map((item, i) => (
+                    <FormInputs
+                      index={i}
+                      item={item}
+                      id={item.id}
+                      key={item.id}
+                      dragItem={dragItem}
+                      removeItem={removeItem}
+                      showEditor={showEditor}
+                    />
+                  ))}
+              </Grid>
+            </div>
+          </Container>
         </Box>
       </div>
     );

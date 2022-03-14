@@ -1,16 +1,16 @@
-import { List, Typography } from "@mui/material";
+import { List, Typography, Box} from "@mui/material";
 import React from "react";
 import ToolbarItem from "../ToolbarItem/ToolbarItem";
 
 const Toolbar = ({ items }) => (
-  <React.Fragment>
+  <Box sx={{ml: 2, width: "100%", height: "100vh", mt: 2}} >
     <Typography align='left' variant="h6">Form Fields</Typography>
     <List>
       {items.map((item) => (
         <ToolbarItem data={item} key={item.key} />
       ))}
     </List>
-  </React.Fragment>
+  </Box>
 );
 
 export default Toolbar;
