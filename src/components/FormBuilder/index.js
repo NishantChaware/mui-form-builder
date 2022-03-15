@@ -24,7 +24,7 @@ const Builder = ({
   const dispatch = useDispatch();
   useEffect(() => {
     if (defaultPreviewItems) {
-      const keyadded = defaultPreviewItems?.map((x) => {
+      const keyadded = defaultPreviewItems.map((x) => {
         return { ...x, key: x.id };
       });
       dispatch(addItemsToPreview(keyadded));
