@@ -23,10 +23,12 @@ const Builder = ({
 }) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    const keyadded = defaultPreviewItems.map((x) => {
-      return { ...x, key: x.id };
-    });
-    dispatch(addItemsToPreview(keyadded));
+    if (defaultPreviewItems) {
+      const keyadded = defaultPreviewItems?.map((x) => {
+        return { ...x, key: x.id };
+      });
+      dispatch(addItemsToPreview(keyadded));
+    }
   }, []);
 
   return (
