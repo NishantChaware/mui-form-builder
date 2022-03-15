@@ -32,7 +32,6 @@ const Dropdown = (props) => {
     : {};
 
 
-    console.log(input)
   const options = generator ? props.options : props.item.options;
 
   return (

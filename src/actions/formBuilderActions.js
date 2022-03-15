@@ -7,6 +7,7 @@ import {
   SHOW_EDITOR,
   HIDE_EDITOR,
   SUBMIT_EDITOR_STATE,
+  ADD_DEFAULT_ITEMS_TO_PREVIEW,
 } from "./types";
 
 export const addItem = (element) => (dispatch) => {
@@ -18,6 +19,12 @@ export const addItem = (element) => (dispatch) => {
     payload: item,
   });
   dispatch(showEditor(item));
+};
+export const addItemsToPreview = (elements) => (dispatch) => {
+  dispatch({
+    type: ADD_DEFAULT_ITEMS_TO_PREVIEW,
+    payload: elements,
+  });
 };
 
 export const removeItem = (id) => ({

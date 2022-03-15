@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DragDropContext } from "react-dnd";
 import { compose } from "redux";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import FormEditor from "./FormEditor";
 import Toolbar from "./Toolbar";
 import Preview from "./Preview";
 import defaultItems from "./Toolbar/defaultItems";
 import { Dialog, Grid, Paper } from "@mui/material";
-import { hideEditor } from "../../actions/formBuilderActions";
+import {
+  addItemsToPreview,
+  hideEditor,
+} from "../../actions/formBuilderActions";
 
 const Builder = ({
   editorVisible,
@@ -18,6 +21,14 @@ const Builder = ({
   defaultFields,
   defaultPreviewItems,
 }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const keyadded = defaultPreviewItems.map((x) => {
+      return { ...x, key: x.id };
+    });
+    dispatch(addItemsToPreview(keyadded));
+  }, []);
+
   return (
     <React.Fragment>
       <Dialog open={editorVisible} onClose={hideEditor}>
