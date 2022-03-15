@@ -10,13 +10,19 @@ import "./App.css";
 // import "./src/App.scss";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 
-const FormBuilder = ({ onSubmit, items, defaultFields }) => (
+const FormBuilder = ({
+  onSubmit,
+  items,
+  defaultFields,
+  defaultPreviewItems,
+}) => (
   <LocalizationProvider dateAdapter={AdapterDateFns}>
     <Provider store={store}>
       <Builder
         onSubmit={onSubmit}
         items={items}
         defaultFields={defaultFields}
+        defaultPreviewItems={defaultPreviewItems}
       />
     </Provider>
   </LocalizationProvider>

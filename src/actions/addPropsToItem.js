@@ -132,6 +132,11 @@ export default (item) => {
       };
 
     case "TextInput":
+      return {
+        required: false,
+        label: html,
+        value: "",
+      };
     case "MultiselectDropdown":
       return {
         label: html,
@@ -152,8 +157,6 @@ export default (item) => {
       return {
         label: html,
         required: false,
-        
-       
       };
     case "TextArea":
     case "Email":
@@ -175,7 +178,6 @@ export default (item) => {
         required: false,
         label: html,
         value: new Date(),
-       
       };
     case "Signature":
       return {

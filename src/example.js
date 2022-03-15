@@ -32,6 +32,7 @@ function Example() {
               ],
             },
           ]}
+          // defaultPreviewItems={[{"id":"94ef54cb-e953-45f2-b50d-02ec2bf5f0e0","element":"TextInput","required":false,"label":"Placeholder Label","value":""}]}
         />
         {data && (
           <FormGenerator

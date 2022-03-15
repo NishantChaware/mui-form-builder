@@ -56,10 +56,16 @@ class Preview extends Component {
       previewItems,
       connectDropTarget,
       defaultFields,
+      defaultPreviewItems,
     } = this.props;
 
     const border = hovered ? "1px solid green" : "1px solid #ccc";
-
+    let finalPreviewItems = [];
+    if (defaultPreviewItems) {
+      finalPreviewItems = previewItems.concat(defaultPreviewItems);
+    } else {
+      finalPreviewItems = previewItems;
+    }
     return connectDropTarget(
       <div style={{ height: "100%" }} className="mt-3">
         <Dialog
@@ -92,8 +98,8 @@ class Preview extends Component {
               <Button
                 variant="contained"
                 className="btn btn-dark float-right ml-3"
-                onClick={() => onSubmit(JSON.stringify(previewItems))}
-                disabled={isEmpty(previewItems)}
+                onClick={() => onSubmit(JSON.stringify(finalPreviewItems))}
+                disabled={isEmpty(finalPreviewItems)}
               >
                 Save
               </Button>
@@ -118,14 +124,14 @@ class Preview extends Component {
                 // margin: "1rem 0rem",
               }}
             >
-              {isEmpty(previewItems) && (
+              {isEmpty(finalPreviewItems) && (
                 <h3 className="list-group-item bg-light text-center text-muted">
                   Select / Drop an item from Toolbox
                 </h3>
               )}
               <Grid container spacing={3}>
-                {!isEmpty(previewItems) &&
-                  previewItems.map((item, i) => (
+                {!isEmpty(finalPreviewItems) &&
+                  finalPreviewItems.map((item, i) => (
                     <FormInputs
                       index={i}
                       item={item}
