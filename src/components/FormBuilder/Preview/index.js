@@ -70,7 +70,7 @@ class Preview extends Component {
         >
           <FinalFormPreview
             fullScreen
-            data={previewItems}
+            data={[...defaultFields, ...previewItems]}
             hideFinalPreview={this.hideFinalPreview}
           />
         </Dialog>
