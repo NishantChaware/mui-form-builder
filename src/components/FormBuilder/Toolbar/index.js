@@ -32,7 +32,6 @@ const Toolbar = ({ items }) => (
         sx={{
           display: "flex",
           alignItems: "center",
-          flexGrow: 1,
           flexDirection: "column",
         }}
       >
