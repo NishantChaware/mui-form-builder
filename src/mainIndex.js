@@ -27,13 +27,6 @@ const FormBuilder = ({
     </Provider>
   </LocalizationProvider>
 );
-const Toolbar = ({ items }) => (
-  <LocalizationProvider dateAdapter={AdapterDateFns}>
-    <Provider store={store}>
-      <Toolbar items={items} />
-    </Provider>
-  </LocalizationProvider>
-);
 
 const FormGenerator = ({ formData, responseData, readOnly, onSubmit }) => (
   <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -48,4 +41,4 @@ const FormGenerator = ({ formData, responseData, readOnly, onSubmit }) => (
   </LocalizationProvider>
 );
 
-export { FormBuilder, FormGenerator, Toolbar };
+export { FormBuilder, FormGenerator };

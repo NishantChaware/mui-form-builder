@@ -22,7 +22,6 @@ const Builder = ({
   defaultPreviewItems,
 }) => {
   const dispatch = useDispatch();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (defaultPreviewItems) {
@@ -46,7 +45,10 @@ const Builder = ({
         <FormEditor />
       </Dialog>
       <Grid container sx={{ p: 3, pl: 0, pt: 0 }}>
-        <Grid item sx={{ pt: 3, pl: 3 }}>
+        <Grid item md={2.5} xs={12}>
+          <Toolbar items={items} />
+        </Grid>
+        <Grid item md={9.5} xs={12} sx={{ pt: 3, pl: 3, width: "100%" }}>
           <Preview
             onSubmit={onSubmit}
             defaultFields={defaultFields}
