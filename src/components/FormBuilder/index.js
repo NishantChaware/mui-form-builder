@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { DragDropContext } from "react-dnd";
@@ -8,7 +8,7 @@ import FormEditor from "./FormEditor";
 import Toolbar from "./Toolbar";
 import Preview from "./Preview";
 import defaultItems from "./Toolbar/defaultItems";
-import { Dialog, Grid, Paper } from "@mui/material";
+import { Dialog, Grid, Paper, Box } from "@mui/material";
 import {
   addItemsToPreview,
   hideEditor,
@@ -22,14 +22,23 @@ const Builder = ({
   defaultPreviewItems,
 }) => {
   const dispatch = useDispatch();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   useEffect(() => {
     if (defaultPreviewItems) {
-      const keyadded = defaultPreviewItems.map((x) => {
+      let keyadded = defaultPreviewItems.map((x) => {
         return { ...x, key: x.id };
       });
-      dispatch(addItemsToPreview(keyadded));
+
+      const unique = (arr, key) => {
+        const keys = new Set();
+        return arr.filter((el) => !keys.has(el[key]) && keys.add(el[key]));
+      };
+
+      console.log();
+      dispatch(addItemsToPreview(unique(keyadded, "id")));
     }
-  }, []);
+  }, [defaultPreviewItems]);
 
   return (
     <React.Fragment>
@@ -37,16 +46,7 @@ const Builder = ({
         <FormEditor />
       </Dialog>
       <Grid container sx={{ p: 3, pl: 0, pt: 0 }}>
-        <Grid
-          item
-          md={2.5}
-          xs={12}
-          component={Paper}
-          sx={{ height: "100vh", maxHeight: "96vh", m: 0, p: 0, mt: "-64px" }}
-        >
-          <Toolbar items={items} />
-        </Grid>
-        <Grid item md={9.5} xs={12} sx={{ pt: 3, pl: 3 }}>
+        <Grid item sx={{ pt: 3, pl: 3 }}>
           <Preview
             onSubmit={onSubmit}
             defaultFields={defaultFields}
