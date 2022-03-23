@@ -3,16 +3,23 @@ import PropTypes from "prop-types";
 import ValidatedFormInputs from "./ValidatedFormInputs";
 import { Container } from "@mui/material";
 
-const Generator = ({ onSubmit, readOnly, formData, responseData }) => {
+const Generator = ({
+  onSubmit,
+  readOnly,
+  formData,
+  responseData,
+  submit,
+  setSubmit,
+}) => {
   return (
-    <Container sx={{ px: 3, py: 1 }} maxWidth="lg">
-      <ValidatedFormInputs
-        formData={formData}
-        responseData={responseData}
-        onSubmit={onSubmit}
-        readOnly={readOnly}
-      />
-    </Container>
+    <ValidatedFormInputs
+      formData={formData}
+      responseData={responseData}
+      onSubmit={onSubmit}
+      readOnly={readOnly}
+      submit={submit}
+      setSubmit={setSubmit}
+    />
   );
 };
 

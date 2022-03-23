@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
     case ADD_DEFAULT_ITEMS_TO_PREVIEW:
       return {
         ...state,
-        previewItems: [...state.previewItems, ...action.payload],
+        previewItems: action.payload,
       };
 
     case REMOVE_ITEM_FROM_PREVIEW:

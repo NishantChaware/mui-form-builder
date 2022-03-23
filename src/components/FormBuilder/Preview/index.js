@@ -58,7 +58,7 @@ class Preview extends Component {
       defaultFields,
     } = this.props;
 
-    const border = hovered ? "1px solid green" : "1px solid #ccc";
+    // const border = hovered ? "1px solid green" : "1px solid #ccc";
 
     return connectDropTarget(
       <div style={{ height: "100%" }} className="mt-3">
@@ -104,7 +104,13 @@ class Preview extends Component {
 
           <Container
             maxWidth="lg"
-            sx={{ px: 3, mt: 3, py: 1, border: "1px dashed black" }}
+            sx={{
+              px: 3,
+              mt: 3,
+              py: 1,
+              border: "1px dashed",
+              borderColor: "divider",
+            }}
           >
             <div
               style={{

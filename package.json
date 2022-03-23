@@ -1,6 +1,6 @@
 {
   "name": "mui-form-builder",
-  "version": "1.4.2",
+  "version": "1.5.7",
   "private": false,
   "main": "./lib/index.js",
   "dependencies": {

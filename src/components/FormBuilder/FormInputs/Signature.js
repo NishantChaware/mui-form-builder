@@ -50,7 +50,7 @@ class Signature extends Component {
           </p>
         ) : (
           <React.Fragment>
-            <SignatureCanvas {..._props} />
+            {/* <SignatureCanvas {..._props} /> */}
             <div>{showError(meta.touched, meta.error, meta.warning)}</div>
             {!readOnly && (
               <div>

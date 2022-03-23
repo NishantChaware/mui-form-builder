@@ -44,12 +44,12 @@ class Rating extends Component {
             required={generator ? required : item.required} 
             readOnly={readOnly}
           />
-          <StarRatings
+          {/* <StarRatings
             {..._props}
             name={name}
             starHoverColor="chocolate"
             starRatedColor="orange"
-          />
+          /> */}
           <div>
             {generator ? showError(meta.touched, meta.error, meta.warning) : ''}
           </div>

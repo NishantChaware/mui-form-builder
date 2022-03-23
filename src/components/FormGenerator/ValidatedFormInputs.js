@@ -31,6 +31,7 @@ import {
 } from "../FormBuilder/FormInputs";
 import { DatePicker } from "@mui/lab";
 import { Grid, Button, Box } from "@mui/material";
+import submit from "./submit";
 
 class ValidatedFormInputs extends Component {
   showError = (touched, error, warning) =>
@@ -57,16 +58,21 @@ class ValidatedFormInputs extends Component {
       pristine,
       responseData,
       handleSubmit,
+      submit,
+      setSubmit,
     } = this.props;
 
     const urlValidator = (formInput) =>
       formInput.required ? [isRequired, validateUrl] : [validateUrl];
 
+    function submitForm() {
+      handleSubmit((values) => onSubmit(JSON.stringify(values)));
+    }
     return (
       <form
         onSubmit={handleSubmit((values) => onSubmit(JSON.stringify(values)))}
       >
-        <Grid container spacing={3} sx={{ mt: 1 }}>
+        <Grid container spacing={3}>
           {map(formData, (formInput) => {
             const { id, element, value, options, required } = formInput;
 
@@ -392,19 +398,6 @@ class ValidatedFormInputs extends Component {
             );
           })}
         </Grid>
-        {!readOnly && (
-          <Box sx={{ mt: 2 }}>
-            <Button
-              style={{
-                cursor: `${pristine ? "not-allowed" : "pointer"}`,
-              }}
-              type="submit"
-              disabled={pristine}
-            >
-              Submaaait
-            </Button>
-          </Box>
-        )}
       </form>
     );
   }
@@ -412,6 +405,7 @@ class ValidatedFormInputs extends Component {
 
 export default compose(
   reduxForm({
+    onSubmit: submit,
     form: "form",
   })
 )(ValidatedFormInputs);

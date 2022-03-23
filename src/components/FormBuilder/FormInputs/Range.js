@@ -62,7 +62,7 @@ class Range extends Component {
           required={generator ? required : item.required}
           readOnly={readOnly} 
         />
-        <Slider {..._props} />
+        {/* <Slider {..._props} /> */}
         <div className={className}>
           {generator 
             ? (defaultValue || input.value || 0) 

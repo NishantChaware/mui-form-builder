@@ -29,14 +29,17 @@ const TextInput = (props) => {
       }
     : {};
 
+  // console.log(showError(meta?.touched, meta?.error, meta?.warning));
 
   return (
     <TextField
       {..._props}
       type={type}
-      // className={className}
+      error={generator && showError(meta.touched, meta.error, meta.warning)}
       fullWidth
-
+      helperText={
+        generator && showError(meta.touched, meta.error, meta.warning)
+      }
       label={generator ? label : item.label}
       required={generator ? required : item.required}
     />

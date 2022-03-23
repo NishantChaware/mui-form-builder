@@ -9,6 +9,7 @@ import "./App.css";
 // import "./css/bootstrap.min.css";
 // import "./src/App.scss";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import RemoteSubmitButton from "./components/FormGenerator/RemoteSubmitButton";
 
 const FormBuilder = ({
   onSubmit,
@@ -28,7 +29,14 @@ const FormBuilder = ({
   </LocalizationProvider>
 );
 
-const FormGenerator = ({ formData, responseData, readOnly, onSubmit }) => (
+const FormGenerator = ({
+  formData,
+  responseData,
+  readOnly,
+  onSubmit,
+  submit,
+  setSubmit,
+}) => (
   <LocalizationProvider dateAdapter={AdapterDateFns}>
     <Provider store={store}>
       <Generator
@@ -36,9 +44,21 @@ const FormGenerator = ({ formData, responseData, readOnly, onSubmit }) => (
         responseData={responseData}
         readOnly={readOnly}
         onSubmit={onSubmit}
+        submit={submit}
+        setSubmit={setSubmit}
       />
     </Provider>
   </LocalizationProvider>
 );
 
-export { FormBuilder, FormGenerator };
+const FormRemoteSubmitButton = ({ onSubmitForm, title, ...props }) => (
+  <Provider store={store}>
+    <RemoteSubmitButton
+      submitOtherForm={onSubmitForm}
+      title={title}
+      {...props}
+    />
+  </Provider>
+);
+
+export { FormBuilder, FormGenerator, FormRemoteSubmitButton };
