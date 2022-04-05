@@ -19,24 +19,31 @@ const DateTimePick = (props) => {
 
   const _props = generator
     ? {
-        value: defaultValue || input.value,
-        onChange: (val) => input.onChange(val),
         disabled: readOnly,
       }
     : {
         value: new Date(),
       };
 
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState(defaultValue);
 
   return (
     <DateTimePicker
-      label={item.label}
+      {..._props}
+      label={generator ? label : item.label}
       value={value}
+      required={required}
       onChange={(newValue) => {
         setValue(newValue);
+        input.onChange(newValue);
       }}
-      renderInput={(params) => <TextField {...params} fullWidth />}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          fullWidth
+          error={generator && showError(meta.touched, meta.error, meta.warning)}
+        />
+      )}
     />
   );
 };

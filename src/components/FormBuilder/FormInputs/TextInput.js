@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import HeaderLabel from "./HeaderLabel";
 import TextField from "@mui/material/TextField";
 
@@ -17,12 +17,12 @@ const TextInput = (props) => {
     defaultValue,
   } = props;
 
+  const [value, setValue] = useState(defaultValue);
   const _props = generator
     ? {
         ...input,
         disabled: readOnly,
-        value: defaultValue || input.value,
-        onChange: (e) => input.onChange(e.target.value),
+        value: value,
         style: {
           borderColor: meta.touched && required && meta.error ? "red" : "",
         },
@@ -40,6 +40,10 @@ const TextInput = (props) => {
       helperText={
         generator && showError(meta.touched, meta.error, meta.warning)
       }
+      onChange={(e) => {
+        setValue(e.target.value);
+        input.onChange(e.target.value);
+      }}
       label={generator ? label : item.label}
       required={generator ? required : item.required}
     />

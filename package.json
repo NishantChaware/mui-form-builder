@@ -1,6 +1,6 @@
 {
   "name": "mui-form-builder",
-  "version": "1.5.7",
+  "version": "1.6.7",
   "private": false,
   "main": "./lib/index.js",
   "dependencies": {
@@ -37,11 +37,11 @@
     "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
-    "@emotion/react": "^11.8.1",
+    "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.3.1",
     "@mui/lab": "^5.0.0-alpha.71",
-    "@mui/material": "^5.4.3",
+    "@mui/material": "^5.5.2",
     "@mui/styles": "^5.4.4",
     "babel-core": "^6.21.0",
     "babel-loader": "^7.1.4",

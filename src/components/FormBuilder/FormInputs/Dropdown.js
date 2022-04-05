@@ -1,5 +1,5 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import HeaderLabel from "./HeaderLabel";
 
 const Dropdown = (props) => {
@@ -16,21 +16,19 @@ const Dropdown = (props) => {
     showError,
     defaultValue,
   } = props;
+  const [value, setValue] = useState(defaultValue);
 
   const _props = generator
     ? {
         ...input,
         disabled: readOnly,
-        value: defaultValue || input.value,
-        onChange: (e) => {
-          input.onChange(e.target.value);
-        },
+        value: value,
+
         style: {
           borderColor: meta.touched && required && meta.error ? "red" : "",
         },
       }
     : {};
-
 
   const options = generator ? props.options : props.item.options;
 
@@ -41,10 +39,18 @@ const Dropdown = (props) => {
       </InputLabel>
 
       <Select
+        error={generator && showError(meta.touched, meta.error, meta.warning)}
+        helperText={
+          generator && showError(meta.touched, meta.error, meta.warning)
+        }
         disabled={disabled}
         {..._props}
         label={generator ? label : item.label}
         labelId="dropdown-label"
+        onChange={(e) => {
+          setValue(e.target.value);
+          input.onChange(e.target.value);
+        }}
       >
         {options.map(({ id, value }) => (
           <MenuItem key={id} value={id}>

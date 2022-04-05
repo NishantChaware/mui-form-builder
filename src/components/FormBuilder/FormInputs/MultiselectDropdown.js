@@ -23,18 +23,13 @@ const MultiselectDropdown = (props) => {
     showError,
     defaultValue,
   } = props;
+  const [value, setValue] = useState(defaultValue ? defaultValue : []);
 
   const _props = generator
     ? {
         ...input,
         disabled: readOnly,
-        value: input.value || [],
-        onChange: (e, values) => {
-          const {
-            target: { value },
-          } = e;
-          input.onChange(typeof value === "string" ? value.split(",") : value);
-        },
+        value: value,
         style: {
           borderColor: meta.touched && required && meta.error ? "red" : "",
         },
@@ -53,9 +48,18 @@ const MultiselectDropdown = (props) => {
       </InputLabel>
 
       <Select
+        error={generator && showError(meta.touched, meta.error, meta.warning)}
+        helperText={
+          generator && showError(meta.touched, meta.error, meta.warning)
+        }
         disabled={disabled}
         {..._props}
         multiple
+        onChange={(e, values) => {
+          setValue(e.target.value);
+          input.onChange(e.target.value);
+          console.log(e.target.value);
+        }}
         label={generator ? label : item.label}
         labelId="demo-simple-select-label"
         renderValue={(selected) => (

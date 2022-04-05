@@ -59,7 +59,7 @@ class Preview extends Component {
     } = this.props;
 
     // const border = hovered ? "1px solid green" : "1px solid #ccc";
-
+    console.log(previewItems);
     return connectDropTarget(
       <div style={{ height: "100%" }} className="mt-3">
         <Dialog

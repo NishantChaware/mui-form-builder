@@ -19,6 +19,7 @@ import {
   TextArea,
   Dropdown,
   DatePick,
+  DateTimePick,
   Paragraph,
   Signature,
   Hyperlink,
@@ -29,7 +30,6 @@ import {
   RadioButtons,
   MultiselectDropdown,
 } from "../FormBuilder/FormInputs";
-import { DatePicker } from "@mui/lab";
 import { Grid, Button, Box } from "@mui/material";
 import submit from "./submit";
 
@@ -360,7 +360,27 @@ class ValidatedFormInputs extends Component {
                   <React.Fragment>
                     <Field
                       name={id}
-                      component={DatePicker}
+                      component={DatePick}
+                      validate={required ? [isRequired] : null}
+                      props={{
+                        id,
+                        readOnly,
+                        formInput,
+                        generator: true,
+                        required: required,
+                        label: formInput.label,
+                        showError: this.showError,
+                        defaultValue: responseData && responseData[id],
+                      }}
+                    />
+                  </React.Fragment>
+                )}
+                {/* -------------- DATE TIME PICKER -------------- */}
+                {element === "DateTime" && (
+                  <React.Fragment>
+                    <Field
+                      name={id}
+                      component={DateTimePick}
                       validate={required ? [isRequired] : null}
                       props={{
                         id,
