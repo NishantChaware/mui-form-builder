@@ -6,7 +6,7 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import HeaderLabel from "./HeaderLabel";
 
 const MultiselectDropdown = (props) => {
@@ -38,6 +38,11 @@ const MultiselectDropdown = (props) => {
         value: [],
       };
 
+  useEffect(() => {
+    if (input) {
+      input.onChange(defaultValue);
+    }
+  }, [defaultValue]);
   const options = generator ? props.options : props.item.options;
 
   return (

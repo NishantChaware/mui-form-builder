@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import HeaderLabel from "./HeaderLabel";
 import TextField from "@mui/material/TextField";
 
@@ -30,7 +30,11 @@ const TextInput = (props) => {
     : {};
 
   // console.log(showError(meta?.touched, meta?.error, meta?.warning));
-
+  useEffect(() => {
+    if (input) {
+      input.onChange(defaultValue);
+    }
+  }, [defaultValue]);
   return (
     <TextField
       {..._props}
