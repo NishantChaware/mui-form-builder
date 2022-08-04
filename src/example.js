@@ -114,8 +114,6 @@ function Example() {
             onSubmit={(final) => {
               console.log(final);
             }}
-<<<<<<< Updated upstream
-=======
             responseData={{
               "b1f5b457-3602-44aa-a5b7-04e97845dfgg": "test",
               "b1f5b457-3602-44aa-a5b7-090399o3334d": "test",
@@ -126,7 +124,6 @@ function Example() {
                 "b5fab867-711e-4dc6-8743-7b103b8ab9af",
               ],
             }}
->>>>>>> Stashed changes
           />
         )}
       </div>

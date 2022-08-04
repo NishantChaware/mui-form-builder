@@ -365,8 +365,9 @@ class FormEditor extends Component {
             </div>
           )}
 
-          {/* ------------- CHECKBOXES OPTIONS ------------- */}
-          {element === "Checkboxes" && (
+          {/* ------------- RADIO BUTTON OPTIONS ------------- */}
+
+          {element === "RadioButtons" && (
             <div className="mt-5">
               <Box
                 sx={{ display: "flex", justifyContent: "space-between", my: 1 }}
@@ -386,8 +387,17 @@ class FormEditor extends Component {
                 <Box key={id} sx={{ mb: 2, display: "flex" }}>
                   <TextField
                     size="small"
-                    placeholder="Option"
+                    value={label}
+                    placeholder="Label"
+                    onChange={(e) =>
+                      this.handleChange(e.target.value, id, "label")
+                    }
+                  />
+                  <TextField
+                    sx={{ ml: 2 }}
+                    size="small"
                     value={value}
+                    placeholder="Value"
                     onChange={(e) =>
                       this.handleChange(e.target.value, id, "value")
                     }
@@ -413,54 +423,7 @@ class FormEditor extends Component {
             </div>
           )}
 
-          {/* ------------- RADIO BUTTON OPTIONS ------------- */}
-          {element === "RadioButtons" && (
-            <div className="mt-5">
-              <h5>Options:</h5>
-              {map(options, ({ id, value, label }) => (
-                <div key={id} className="input-group mb-2">
-                  <input
-                    className="form-control"
-                    value={label}
-                    placeholder="Label"
-                    onChange={(e) =>
-                      this.handleChange(e.target.value, id, "label")
-                    }
-                  />
-                  <input
-                    className="form-control"
-                    value={value}
-                    placeholder="Value"
-                    onChange={(e) =>
-                      this.handleChange(e.target.value, id, "value")
-                    }
-                  />
-                  <div className="input-group-append">
-                    <button
-                      className="btn btn-danger"
-                      disabled={options.length === 1}
-                      style={{
-                        cursor: `${
-                          options.length === 1 ? "not-allowed" : "pointer"
-                        }`,
-                      }}
-                      onClick={() => {
-                        this.removeOption(id);
-                      }}
-                    >
-                      <i className="fa fa-times" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-              <button
-                className="btn btn-primary"
-                onClick={() => this.addOption("RadioButtons")}
-              >
-                Add Option
-              </button>
-            </div>
-          )}
+         
 
           {/* ------------- RATING OPTIONS ------------- */}
           {element === "Rating" && (

@@ -30,10 +30,17 @@ export default () => [
     name: "Dropdown",
     icon: "ArrowDropDownCircle",
   },
+
   {
     key: "MultiselectDropdown",
     name: "MultiselectDropdown",
     icon: "ArrowDropDownCircle",
+  },
+
+  {
+    key: "RadioButtons",
+    name: "RadioButtons",
+    icon: "RadioButtonChecked",
   },
   // {
   //   key: "Tags",

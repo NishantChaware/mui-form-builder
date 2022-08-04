@@ -1,6 +1,5 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import React, { Component, useEffect, useState } from "react";
-import HeaderLabel from "./HeaderLabel";
 
 const Dropdown = (props) => {
   const {
@@ -18,7 +17,6 @@ const Dropdown = (props) => {
   } = props;
   const [value, setValue] = useState(defaultValue);
 
-  console.log(defaultValue);
   const _props = generator
     ? {
         ...input,
