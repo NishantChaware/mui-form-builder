@@ -1,23 +1,27 @@
-import { List, Typography, Box, Drawer, Divider, Hidden } from "@mui/material";
+import {
+  List,
+  Typography,
+  Box,
+  Drawer,
+  Divider,
+  Hidden,
+  Paper,
+} from "@mui/material";
 import React from "react";
 import ToolbarItem from "../ToolbarItem/ToolbarItem";
 
 const Toolbar = ({ items }) => (
-  <Drawer
-    anchor="left"
-    open
-    PaperProps={{
-      sx: {
-        backgroundColor: "neutral.900",
-        borderRightColor: "divider",
-        borderRightStyle: "solid",
-        borderRightWidth: (theme) => (theme.palette.mode === "dark" ? 1 : 0),
-        color: "#FFFFFF",
-        width: 280,
-        overflow: "hidden",
-      },
+  <Paper
+    elevation={0}
+    sx={{
+      backgroundColor: (theme) =>
+        theme.palette.mode === "dark" ? "#111827" : "#FFFFFF",
+      borderRightColor: "divider",
+      borderRightStyle: "solid",
+      borderRightWidth: (theme) => (theme.palette.mode === "dark" ? 1 : 0),
+      color: "#FFFFFF",
+      overflow: "hidden",
     }}
-    variant="permanent"
   >
     <Box
       sx={{
@@ -51,7 +55,7 @@ const Toolbar = ({ items }) => (
         }}
       />
     </Box>{" "}
-  </Drawer>
+  </Paper>
 );
 
 export default Toolbar;

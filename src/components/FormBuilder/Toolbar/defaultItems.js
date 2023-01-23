@@ -88,21 +88,21 @@ export default () => [
   //   name: "Email",
   //   icon: "fa fa-at"
   // },
-  {
-    key: "FileUpload",
-    name: "FileUpload",
-    icon: "FileUpload",
-  },
-  {
-    key: "Date",
-    name: "Date",
-    icon: "CalendarToday",
-  },
-  {
-    key: "DateTime",
-    name: "DateTime",
-    icon: "Schedule",
-  },
+  // {
+  //   key: "FileUpload",
+  //   name: "FileUpload",
+  //   icon: "FileUpload",
+  // },
+  // {
+  //   key: "Date",
+  //   name: "Date",
+  //   icon: "CalendarToday",
+  // },
+  // {
+  //   key: "DateTime",
+  //   name: "DateTime",
+  //   icon: "Schedule",
+  // },
   // {
   //   key: "Signature",
   //   name: "Signature",
